@@ -16,7 +16,7 @@ export function Hero() {
     <section className="relative h-[100svh] min-h-[640px] w-full overflow-hidden bg-kuro-black">
       <div className="absolute inset-0">
         <Image
-          src="https://images.unsplash.com/photo-1553621042-f6e147245754?w=1800&q=75&auto=format&fit=crop"
+          src="https://images.unsplash.com/photo-1553621042-f6e147245754?w=1280&q=70&auto=format&fit=crop"
           alt="Sushi premium en Kuro Caracas"
           fill
           priority
@@ -24,7 +24,7 @@ export function Hero() {
           sizes="100vw"
           placeholder="blur"
           blurDataURL={HERO_BLUR}
-          className="object-cover hero-fade"
+          className="object-cover"
         />
         <div
           className="absolute inset-0 pointer-events-none"
@@ -61,16 +61,8 @@ export function Hero() {
           </div>
 
           <h1 className="text-display text-kuro-cream max-w-[14ch]">
-            <span className="block overflow-hidden">
-              <span className="block display-italic translate-y-full animate-[heroSlideUp_0.85s_cubic-bezier(0.22,1,0.36,1)_0.5s_forwards]">
-                El arte de
-              </span>
-            </span>
-            <span className="block overflow-hidden">
-              <span className="block display-italic text-kuro-red translate-y-full animate-[heroSlideUp_0.85s_cubic-bezier(0.22,1,0.36,1)_0.68s_forwards]">
-                lo oscuro.
-              </span>
-            </span>
+            <span className="block display-italic">El arte de</span>
+            <span className="block display-italic text-kuro-red">lo oscuro.</span>
           </h1>
 
           <p

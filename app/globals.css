@@ -223,15 +223,8 @@
 @keyframes heroFadeUp {
   to { opacity: 1; transform: translate3d(0, 0, 0); }
 }
-@keyframes heroSlideUp {
-  to { transform: translate3d(0, 0, 0); }
-}
 @keyframes heroLine {
   to { transform: scaleY(1); }
-}
-.hero-fade {
-  animation: heroFade 0.9s ease-out 0s both;
-  will-change: opacity;
 }
 @media (prefers-reduced-motion: reduce) {
   .hero-fade,

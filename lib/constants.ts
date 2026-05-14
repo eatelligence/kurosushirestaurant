@@ -230,5 +230,5 @@ export const menuData: MenuSection[] = [
 export const navLinks = [
   { href: "/menu", label: "Menú" },
   { href: "/about", label: "Historia" },
-  { href: "/reservations", label: "Reservaciones" },
+  { href: "/contacto", label: "Contacto" },
 ];

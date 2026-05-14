@@ -34,8 +34,8 @@ export function Footer() {
               {[
                 { href: "/menu", label: "Menú" },
                 { href: "/about", label: "Nuestra Historia" },
-                { href: "/reservations", label: "Reservaciones" },
-                { href: "#location", label: "Contacto" },
+                { href: "/contacto", label: "Contacto" },
+                { href: "#location", label: "Ubicación" },
               ].map((l) => (
                 <li key={l.href}>
                   <Link

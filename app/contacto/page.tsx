@@ -5,12 +5,11 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import { m as motion } from "framer-motion";
-import { Check, Clock, MapPin, MessageCircle, Phone } from "lucide-react";
+import { Check, Clock, MapPin, MessageCircle, Phone, CreditCard } from "lucide-react";
 import { RESTAURANT } from "@/lib/constants";
 
 const schema = z.object({
   name: z.string().min(2, "Por favor ingresa tu nombre completo"),
-  email: z.string().email("Correo electrónico inválido"),
   phone: z.string().min(7, "Número de WhatsApp inválido"),
   date: z.string().min(1, "Selecciona una fecha"),
   time: z.string().min(1, "Selecciona una hora"),
@@ -25,7 +24,24 @@ const times = ["12:00","12:30","13:00","13:30","14:00","19:00","19:30","20:00","
 const guests = ["1","2","3-4","5-6","7+"];
 const occasions = ["Ninguna","Cumpleaños","Aniversario","Cena de negocios","Otro"];
 
-export default function ReservationsPage() {
+const WHATSAPP_NUMBER = "582125551234";
+
+function buildWhatsAppLink(d: FormData) {
+  const lines = [
+    `*Reservación · Kuro Sushi*`,
+    ``,
+    `Nombre: ${d.name}`,
+    `WhatsApp: ${d.phone}`,
+    `Fecha: ${d.date}`,
+    `Hora: ${d.time}`,
+    `Personas: ${d.guests}`,
+    d.occasion && d.occasion !== "Ninguna" ? `Ocasión: ${d.occasion}` : null,
+    d.notes ? `Notas: ${d.notes}` : null,
+  ].filter(Boolean);
+  return `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(lines.join("\n"))}`;
+}
+
+export default function ContactoPage() {
   const [submitted, setSubmitted] = useState(false);
   const {
     register,
@@ -36,13 +52,9 @@ export default function ReservationsPage() {
     defaultValues: { occasion: "Ninguna" },
   });
 
-  const onSubmit = async (data: FormData) => {
-    await new Promise((r) => setTimeout(r, 700));
-    const subject = encodeURIComponent(`Nueva reservación · ${data.name}`);
-    const body = encodeURIComponent(
-      `Nombre: ${data.name}\nEmail: ${data.email}\nWhatsApp: ${data.phone}\nFecha: ${data.date}\nHora: ${data.time}\nPersonas: ${data.guests}\nOcasión: ${data.occasion ?? "Ninguna"}\nNotas: ${data.notes ?? ""}`
-    );
-    window.location.href = `mailto:${RESTAURANT.reservationsEmail}?subject=${subject}&body=${body}`;
+  const onSubmit = (data: FormData) => {
+    const url = buildWhatsAppLink(data);
+    window.open(url, "_blank", "noopener,noreferrer");
     setSubmitted(true);
   };
 
@@ -53,20 +65,39 @@ export default function ReservationsPage() {
         <div className="max-w-[1280px] mx-auto px-gutter">
           <div className="flex items-center gap-3 mb-5">
             <span className="h-px w-10 bg-kuro-gold" />
-            <span className="label-tracked">Reservaciones · 予約</span>
+            <span className="label-tracked">Contacto · 連絡</span>
           </div>
           <h1
             className="text-h1 text-kuro-cream max-w-3xl"
             style={{ fontFamily: "var(--font-display)", fontWeight: 300 }}
           >
-            Reserva tu lugar
+            Contáctanos
             <br />
-            <span className="display-italic text-kuro-red">en la penumbra.</span>
+            <span className="display-italic text-kuro-red">por WhatsApp.</span>
           </h1>
           <p className="mt-6 text-kuro-stone text-base md:text-lg max-w-xl leading-relaxed">
-            Confirmamos cada reservación personalmente por WhatsApp en menos de
-            dos horas.
+            Reservas, pedidos y consultas: todo se gestiona en tiempo real por
+            WhatsApp. Te respondemos en menos de dos horas.
           </p>
+
+          <div className="mt-8 flex flex-col sm:flex-row gap-3">
+            <a
+              href={RESTAURANT.whatsappReservation}
+              target="_blank"
+              rel="noreferrer"
+              className="inline-flex items-center justify-center gap-3 px-7 py-4 bg-[#075E54] hover:bg-[#0a7a6e] text-white text-[12px] uppercase tracking-[0.2em] font-medium transition-colors min-h-[48px]"
+            >
+              <MessageCircle size={16} strokeWidth={1.6} aria-hidden="true" />
+              Reservar por WhatsApp
+            </a>
+            <a
+              href={RESTAURANT.phoneHref}
+              className="btn-outline-cream"
+            >
+              <Phone size={14} strokeWidth={1.5} aria-hidden="true" />
+              <span>Llamar al restaurante</span>
+            </a>
+          </div>
         </div>
       </section>
 
@@ -78,21 +109,37 @@ export default function ReservationsPage() {
             transition={{ duration: 0.7 }}
             className="lg:col-span-7"
           >
+            <div className="flex items-center gap-3 mb-6">
+              <span className="h-px w-8 bg-kuro-gold/60" />
+              <span className="label-tracked">Formulario rápido</span>
+            </div>
+            <p className="text-kuro-stone text-sm leading-relaxed mb-6 max-w-xl">
+              Si prefieres, completa los datos abajo y al enviar abrimos
+              WhatsApp con tu mensaje listo.
+            </p>
+
             {submitted ? (
               <div className="bg-kuro-obsidian border border-kuro-gold/30 p-10 md:p-14 text-center">
                 <div className="w-14 h-14 rounded-full border border-kuro-gold/40 flex items-center justify-center text-kuro-gold mx-auto mb-6">
-                  <Check size={22} strokeWidth={1.5} />
+                  <Check size={22} strokeWidth={1.5} aria-hidden="true" />
                 </div>
                 <h2
                   className="text-h2 text-kuro-cream"
                   style={{ fontFamily: "var(--font-display)", fontWeight: 300 }}
                 >
-                  ¡Reservación recibida!
+                  ¡Listo!
                 </h2>
                 <p className="mt-4 text-kuro-stone max-w-md mx-auto leading-relaxed">
-                  Te contactaremos por WhatsApp en menos de 2 horas para
-                  confirmar todos los detalles.
+                  Hemos abierto WhatsApp con tu solicitud. Envíanos el mensaje
+                  y te confirmaremos la reserva en menos de 2 horas.
                 </p>
+                <button
+                  type="button"
+                  onClick={() => setSubmitted(false)}
+                  className="mt-6 text-[12px] uppercase tracking-[0.22em] text-kuro-gold hover:text-kuro-red transition-colors"
+                >
+                  Enviar otra solicitud
+                </button>
               </div>
             ) : (
               <form
@@ -104,26 +151,19 @@ export default function ReservationsPage() {
                     {...register("name")}
                     placeholder="María González"
                     className="input"
+                    autoComplete="name"
                   />
                 </Field>
 
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                  <Field label="Correo electrónico" error={errors.email?.message} required>
-                    <input
-                      type="email"
-                      {...register("email")}
-                      placeholder="tu@correo.com"
-                      className="input"
-                    />
-                  </Field>
-                  <Field label="WhatsApp" error={errors.phone?.message} required>
-                    <input
-                      {...register("phone")}
-                      placeholder="+58 414 555 5555"
-                      className="input"
-                    />
-                  </Field>
-                </div>
+                <Field label="WhatsApp" error={errors.phone?.message} required>
+                  <input
+                    {...register("phone")}
+                    placeholder="+58 414 555 5555"
+                    className="input"
+                    inputMode="tel"
+                    autoComplete="tel"
+                  />
+                </Field>
 
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                   <Field label="Fecha" error={errors.date?.message} required>
@@ -155,11 +195,11 @@ export default function ReservationsPage() {
                   </select>
                 </Field>
 
-                <Field label="Peticiones especiales">
+                <Field label="Mensaje (opcional)">
                   <textarea
                     {...register("notes")}
                     rows={4}
-                    placeholder="Alergias, preferencias, asientos…"
+                    placeholder="Alergias, preferencias, asientos, pedido especial…"
                     className="input resize-none"
                   />
                 </Field>
@@ -167,14 +207,15 @@ export default function ReservationsPage() {
                 <button
                   type="submit"
                   disabled={isSubmitting}
-                  className="btn-primary w-full justify-center disabled:opacity-60"
+                  className="inline-flex items-center justify-center gap-3 w-full px-7 py-4 bg-[#075E54] hover:bg-[#0a7a6e] text-white text-[12px] uppercase tracking-[0.2em] font-medium transition-colors min-h-[48px] disabled:opacity-60"
                 >
-                  {isSubmitting ? "Enviando…" : "Solicitar reservación →"}
+                  <MessageCircle size={16} strokeWidth={1.6} aria-hidden="true" />
+                  {isSubmitting ? "Abriendo WhatsApp…" : "Enviar por WhatsApp"}
                 </button>
 
                 <p className="text-[12px] md:text-[11px] text-kuro-stone leading-relaxed">
-                  Al solicitar tu reserva aceptas ser contactado por WhatsApp
-                  para la confirmación. Tus datos no se comparten con terceros.
+                  Al enviar abriremos WhatsApp con tu mensaje pre-cargado.
+                  Tus datos no se almacenan en este sitio.
                 </p>
               </form>
             )}
@@ -184,7 +225,7 @@ export default function ReservationsPage() {
             <InfoBlock icon={Clock} title="Horarios">
               <ul className="space-y-2 text-sm">
                 {RESTAURANT.hours.map((h) => (
-                  <li key={h.days} className="flex justify-between">
+                  <li key={h.days} className="flex justify-between gap-4">
                     <span className="text-kuro-stone">{h.days}</span>
                     <span className="text-kuro-cream">{h.time}</span>
                   </li>
@@ -199,25 +240,34 @@ export default function ReservationsPage() {
               </p>
             </InfoBlock>
 
-            <InfoBlock icon={MessageCircle} title="WhatsApp directo">
-              <p className="text-sm text-kuro-stone leading-relaxed mb-3">
-                Si prefieres, escríbenos directamente y reservamos por ti.
-              </p>
-              <a
-                href={RESTAURANT.whatsappReservation}
-                target="_blank"
-                rel="noreferrer"
-                className="inline-flex items-center gap-2 text-[#25D366] hover:text-[#1da851] text-sm uppercase tracking-[0.2em]"
-              >
-                <MessageCircle size={14} strokeWidth={1.5} />
-                Reservar por WhatsApp →
-              </a>
+            <InfoBlock icon={Phone} title="Contacto directo">
+              <ul className="text-sm text-kuro-cream/90 leading-relaxed space-y-2">
+                <li>
+                  <a href={RESTAURANT.phoneHref} className="hover:text-kuro-gold transition-colors">
+                    {RESTAURANT.phone}
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href={`mailto:${RESTAURANT.email}`}
+                    className="hover:text-kuro-gold transition-colors break-all"
+                  >
+                    {RESTAURANT.email}
+                  </a>
+                </li>
+              </ul>
             </InfoBlock>
 
-            <InfoBlock icon={Phone} title="Políticas">
+            <InfoBlock icon={CreditCard} title="Pagos aceptados">
+              <p className="text-sm text-kuro-cream/90 leading-relaxed">
+                {RESTAURANT.payments.join(" · ")}
+              </p>
+            </InfoBlock>
+
+            <InfoBlock icon={MessageCircle} title="Políticas">
               <ul className="text-sm text-kuro-stone leading-relaxed space-y-2">
-                <li>· Mantenemos las mesas hasta 20 minutos después de la hora.</li>
-                <li>· Grupos de 7+ personas requieren reserva mínima 48 h antes.</li>
+                <li>· Mantenemos las mesas hasta 20 min después de la hora.</li>
+                <li>· Grupos de 7+ personas: reserva mínima 48 h antes.</li>
                 <li>· Eventos privados: <a href={`mailto:${RESTAURANT.email}`} className="text-kuro-gold hover:text-kuro-red transition-colors">{RESTAURANT.email}</a></li>
               </ul>
             </InfoBlock>
@@ -232,6 +282,7 @@ export default function ReservationsPage() {
           border: 1px solid #2A2A2A;
           color: #F5F0E8;
           padding: 14px 16px;
+          min-height: 48px;
           font-family: var(--font-sans);
           font-size: 15px;
           font-weight: 300;
@@ -267,11 +318,11 @@ function Field({
   return (
     <label className="block">
       <span className="block label-tracked-stone mb-2.5">
-        {label}{required && <span className="text-kuro-red ml-1">*</span>}
+        {label}{required && <span className="text-kuro-red ml-1" aria-hidden="true">*</span>}
       </span>
       {children}
       {error && (
-        <span className="block mt-1.5 text-[12px] md:text-[11px] text-kuro-red-light">
+        <span role="alert" className="block mt-1.5 text-[12px] md:text-[11px] text-kuro-red-light">
           {error}
         </span>
       )}
@@ -291,7 +342,7 @@ function InfoBlock({
   return (
     <div className="border-l border-kuro-gold/30 pl-6 py-2">
       <div className="flex items-center gap-3 mb-3">
-        <Icon size={14} strokeWidth={1.5} className="text-kuro-gold" />
+        <Icon size={14} strokeWidth={1.5} className="text-kuro-gold" aria-hidden="true" />
         <span className="label-tracked-stone">{title}</span>
       </div>
       <div>{children}</div>

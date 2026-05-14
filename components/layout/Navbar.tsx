@@ -104,10 +104,15 @@ export function Navbar() {
           </ul>
 
           <div className="hidden lg:block">
-            <Link href="/reservations" className="btn-ghost group">
+            <a
+              href={RESTAURANT.whatsappReservation}
+              target="_blank"
+              rel="noreferrer"
+              className="btn-ghost group"
+            >
               <span>Reservar</span>
               <span className="block w-2 h-2 rounded-full bg-kuro-red group-hover:bg-kuro-cream transition-colors" />
-            </Link>
+            </a>
           </div>
 
           <button
@@ -179,14 +184,16 @@ export function Navbar() {
                   transition={{ duration: 0.5, delay: 0.5 }}
                   className="pt-4"
                 >
-                  <Link
-                    href="/reservations"
+                  <a
+                    href={RESTAURANT.whatsappReservation}
+                    target="_blank"
+                    rel="noreferrer"
                     onClick={() => setOpen(false)}
                     className="inline-block text-[40px] sm:text-[52px] leading-none italic text-kuro-red min-h-[44px]"
                     style={{ fontFamily: "var(--font-display)", fontWeight: 300 }}
                   >
-                    Reservar →
-                  </Link>
+                    Reservar por WhatsApp →
+                  </a>
                 </motion.li>
               </ul>
             </nav>

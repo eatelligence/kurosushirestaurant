@@ -216,6 +216,32 @@
   .underline-slide:hover { background-size: 100% 1px; }
 }
 
+/* Hero CSS-only animations (no Framer on critical path) */
+@keyframes heroFade {
+  to { opacity: 1; }
+}
+@keyframes heroFadeUp {
+  to { opacity: 1; transform: translate3d(0, 0, 0); }
+}
+@keyframes heroSlideUp {
+  to { transform: translate3d(0, 0, 0); }
+}
+@keyframes heroLine {
+  to { transform: scaleY(1); }
+}
+.hero-fade {
+  animation: heroFade 0.9s ease-out 0s both;
+  will-change: opacity;
+}
+@media (prefers-reduced-motion: reduce) {
+  .hero-fade,
+  [class*="animate-[hero"] {
+    animation: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}
+
 /* Leaflet tweaks */
 .leaflet-container {
   background: #0A0A0A !important;

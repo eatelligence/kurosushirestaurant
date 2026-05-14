@@ -3,7 +3,7 @@
 import dynamic from "next/dynamic";
 import { MapPin, Clock, Phone, CreditCard } from "lucide-react";
 import { RESTAURANT } from "@/lib/constants";
-import { motion } from "framer-motion";
+import { m as motion } from "framer-motion";
 
 const LocationMap = dynamic(() => import("./LocationMap"), {
   ssr: false,

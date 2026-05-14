@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
-import { AnimatePresence, motion } from "framer-motion";
+import { AnimatePresence, m as motion } from "framer-motion";
 import { Menu, X, Instagram } from "lucide-react";
 import { navLinks, RESTAURANT } from "@/lib/constants";
 

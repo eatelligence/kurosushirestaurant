@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { m as motion } from "framer-motion";
 import { Flame, Sparkle } from "lucide-react";
 import type { MenuItem } from "@/lib/constants";
 

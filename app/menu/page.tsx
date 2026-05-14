@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import Image from "next/image";
-import { motion } from "framer-motion";
+import { m as motion } from "framer-motion";
 import { menuData, RESTAURANT } from "@/lib/constants";
 import { MenuCategory } from "@/components/menu/MenuCategory";
 import { MessageCircle } from "lucide-react";

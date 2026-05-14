@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { motion } from "framer-motion";
+import { m as motion } from "framer-motion";
 import { Instagram } from "lucide-react";
 import { igImages, RESTAURANT } from "@/lib/constants";
 

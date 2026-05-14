@@ -4,6 +4,7 @@ import "./globals.css";
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
 import { WhatsAppButton } from "@/components/layout/WhatsAppButton";
+import { MotionProvider } from "@/components/MotionProvider";
 import { RESTAURANT } from "@/lib/constants";
 
 const cormorant = Cormorant_Garamond({
@@ -117,10 +118,12 @@ export default function RootLayout({
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
-        <Navbar />
-        <main>{children}</main>
-        <Footer />
-        <WhatsAppButton />
+        <MotionProvider>
+          <Navbar />
+          <main>{children}</main>
+          <Footer />
+          <WhatsAppButton />
+        </MotionProvider>
       </body>
     </html>
   );

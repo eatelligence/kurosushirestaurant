@@ -4,7 +4,7 @@ import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
-import { motion } from "framer-motion";
+import { m as motion } from "framer-motion";
 import { Check, Clock, MapPin, MessageCircle, Phone } from "lucide-react";
 import { RESTAURANT } from "@/lib/constants";
 

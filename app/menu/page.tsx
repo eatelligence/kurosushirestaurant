@@ -87,7 +87,7 @@ export default function MenuPage() {
             href={RESTAURANT.whatsappMenu}
             target="_blank"
             rel="noreferrer"
-            className="inline-flex items-center gap-3 px-7 py-4 bg-[#128C7E] hover:bg-[#0e6e63] text-white text-[12px] uppercase tracking-[0.2em] font-medium transition-colors min-h-[44px]"
+            className="inline-flex items-center gap-3 px-7 py-4 bg-[#075E54] hover:bg-[#0e6e63] text-white text-[12px] uppercase tracking-[0.2em] font-medium transition-colors min-h-[44px]"
           >
             <MessageCircle size={16} strokeWidth={1.6} />
             Preguntar por WhatsApp

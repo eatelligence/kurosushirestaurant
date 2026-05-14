@@ -15,20 +15,20 @@ export function DishCard({ item, index }: { item: MenuItem; index: number }) {
     >
       <div className="flex-1 min-w-0">
         <div className="flex items-center gap-2 flex-wrap">
-          <h4
+          <h3
             className="text-kuro-cream text-[20px] md:text-[22px] leading-tight"
             style={{ fontFamily: "var(--font-display)", fontWeight: 400 }}
           >
             {item.name}
-          </h4>
+          </h3>
           {item.signature && (
-            <span className="inline-flex items-center gap-1 text-[9px] uppercase tracking-[0.22em] text-kuro-gold border border-kuro-gold/40 px-2 py-0.5">
+            <span className="inline-flex items-center gap-1 text-[12px] md:text-[10px] uppercase tracking-[0.22em] text-kuro-gold border border-kuro-gold/40 px-2 py-0.5">
               <Sparkle size={10} strokeWidth={1.5} />
               Signature
             </span>
           )}
           {item.spicy && (
-            <span className="inline-flex items-center gap-1 text-[9px] uppercase tracking-[0.22em] text-kuro-red border border-kuro-red/40 px-2 py-0.5">
+            <span className="inline-flex items-center gap-1 text-[12px] md:text-[10px] uppercase tracking-[0.22em] text-kuro-red border border-kuro-red/40 px-2 py-0.5">
               <Flame size={10} strokeWidth={1.5} />
               Picante
             </span>

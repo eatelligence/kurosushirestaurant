@@ -9,7 +9,7 @@ const LocationMap = dynamic(() => import("./LocationMap"), {
   ssr: false,
   loading: () => (
     <div className="w-full min-h-[420px] h-full rounded-[12px] border border-kuro-smoke bg-kuro-charcoal flex items-center justify-center">
-      <span className="text-kuro-stone text-[11px] uppercase tracking-[0.28em]">
+      <span className="text-kuro-stone text-[12px] md:text-[11px] uppercase tracking-[0.28em]">
         Cargando mapa…
       </span>
     </div>
@@ -113,7 +113,7 @@ export function Location() {
                   <row.icon size={16} strokeWidth={1.4} />
                 </div>
                 <div className="flex-1">
-                  <div className="text-[10px] uppercase tracking-[0.28em] text-kuro-stone mb-2">
+                  <div className="text-[12px] md:text-[10px] uppercase tracking-[0.28em] text-kuro-stone mb-2">
                     {row.title}
                   </div>
                   <div className="text-kuro-cream/90 text-[15px] leading-relaxed">

@@ -88,10 +88,10 @@ export function Philosophy() {
                 </span>
               </div>
               <div className="mt-4 flex flex-col items-center gap-1">
-                <span className="text-[11px] uppercase tracking-[0.32em] text-kuro-gold">
+                <span className="text-[12px] md:text-[11px] uppercase tracking-[0.32em] text-kuro-gold">
                   {p.word}
                 </span>
-                <span className="text-[10px] uppercase tracking-[0.2em] text-kuro-stone">
+                <span className="text-[12px] md:text-[10px] uppercase tracking-[0.2em] text-kuro-stone">
                   {p.sub}
                 </span>
               </div>

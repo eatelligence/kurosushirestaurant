@@ -67,19 +67,21 @@
   .label-tracked {
     font-family: var(--font-sans);
     text-transform: uppercase;
-    letter-spacing: 0.25em;
-    font-size: 11px;
+    letter-spacing: 0.24em;
+    font-size: 12px;
     font-weight: 500;
     color: var(--color-kuro-gold);
+    line-height: 1.4;
   }
 
   .label-tracked-stone {
     font-family: var(--font-sans);
     text-transform: uppercase;
-    letter-spacing: 0.25em;
-    font-size: 11px;
+    letter-spacing: 0.24em;
+    font-size: 12px;
     font-weight: 500;
     color: var(--color-kuro-stone);
+    line-height: 1.4;
   }
 
   .display-italic {

@@ -16,7 +16,7 @@ export function Footer() {
               >
                 KURO
               </div>
-              <div className="text-[10px] uppercase tracking-[0.3em] text-kuro-stone mt-1">
+              <div className="text-[12px] md:text-[10px] uppercase tracking-[0.3em] text-kuro-stone mt-1">
                 Sushi Restaurant
               </div>
             </Link>
@@ -29,7 +29,7 @@ export function Footer() {
           </div>
 
           <div className="md:col-span-2">
-            <h4 className="label-tracked-stone mb-5">Navegación</h4>
+            <h2 className="label-tracked-stone mb-5">Navegación</h2>
             <ul className="space-y-3">
               {[
                 { href: "/menu", label: "Menú" },
@@ -50,11 +50,11 @@ export function Footer() {
           </div>
 
           <div className="md:col-span-3">
-            <h4 className="label-tracked-stone mb-5">Horarios</h4>
+            <h2 className="label-tracked-stone mb-5">Horarios</h2>
             <ul className="space-y-3 text-sm text-kuro-cream/80">
               {RESTAURANT.hours.map((h) => (
                 <li key={h.days} className="flex flex-col">
-                  <span className="text-kuro-stone text-[11px] uppercase tracking-[0.18em]">
+                  <span className="text-kuro-stone text-[12px] md:text-[11px] uppercase tracking-[0.18em]">
                     {h.days}
                   </span>
                   <span>{h.time}</span>
@@ -64,7 +64,7 @@ export function Footer() {
           </div>
 
           <div className="md:col-span-3">
-            <h4 className="label-tracked-stone mb-5">Contacto</h4>
+            <h2 className="label-tracked-stone mb-5">Contacto</h2>
             <ul className="space-y-3 text-sm text-kuro-cream/80">
               <li>
                 <a href={RESTAURANT.phoneHref} className="hover:text-kuro-gold transition-colors">
@@ -117,7 +117,7 @@ export function Footer() {
           </div>
         </div>
 
-        <div className="mt-16 pt-6 border-t border-kuro-smoke/60 flex flex-col md:flex-row justify-between items-start md:items-center gap-3 text-[11px] uppercase tracking-[0.2em] text-kuro-stone">
+        <div className="mt-16 pt-6 border-t border-kuro-smoke/60 flex flex-col md:flex-row justify-between items-start md:items-center gap-3 text-[12px] md:text-[11px] uppercase tracking-[0.2em] text-kuro-stone">
           <p>© {new Date().getFullYear()} Kuro Sushi Restaurant · Los Palos Grandes, Caracas</p>
           <p className="flex items-center gap-3">
             <span>Todos los derechos reservados</span>

@@ -15,7 +15,7 @@ export function InstagramFeed() {
             <span className="h-px w-8 bg-kuro-gold/60" />
             <span className="label-tracked">Síguenos</span>
           </div>
-          <h3
+          <h2
             className="text-h2 text-kuro-cream"
             style={{ fontFamily: "var(--font-display)", fontWeight: 300 }}
           >
@@ -27,7 +27,7 @@ export function InstagramFeed() {
             >
               {RESTAURANT.social.instagramHandle}
             </a>
-          </h3>
+          </h2>
         </div>
         <a
           href={RESTAURANT.social.instagram}

@@ -172,7 +172,7 @@ export default function ReservationsPage() {
                   {isSubmitting ? "Enviando…" : "Solicitar reservación →"}
                 </button>
 
-                <p className="text-[11px] text-kuro-stone leading-relaxed">
+                <p className="text-[12px] md:text-[11px] text-kuro-stone leading-relaxed">
                   Al solicitar tu reserva aceptas ser contactado por WhatsApp
                   para la confirmación. Tus datos no se comparten con terceros.
                 </p>
@@ -271,7 +271,7 @@ function Field({
       </span>
       {children}
       {error && (
-        <span className="block mt-1.5 text-[11px] text-kuro-red-light">
+        <span className="block mt-1.5 text-[12px] md:text-[11px] text-kuro-red-light">
           {error}
         </span>
       )}

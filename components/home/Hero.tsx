@@ -17,10 +17,11 @@ export function Hero() {
         className="absolute inset-0"
       >
         <Image
-          src="https://images.unsplash.com/photo-1553621042-f6e147245754?w=2400&q=90"
+          src="https://images.unsplash.com/photo-1553621042-f6e147245754?w=2400&q=85"
           alt="Sushi premium en Kuro Caracas"
           fill
           priority
+          fetchPriority="high"
           sizes="100vw"
           className="object-cover"
         />
@@ -55,7 +56,7 @@ export function Hero() {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 1.8, duration: 1 }}
-          className="mt-32 text-[10px] uppercase tracking-[0.4em] text-kuro-stone vertical-rl"
+          className="mt-32 text-[12px] md:text-[10px] uppercase tracking-[0.4em] text-kuro-stone vertical-rl"
           style={{ writingMode: "vertical-rl" }}
         >
           黒 · Caracas · 2024
@@ -142,7 +143,7 @@ export function Hero() {
           transition={{ delay: 2.5, duration: 1 }}
           className="absolute bottom-6 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 text-kuro-stone"
         >
-          <span className="text-[10px] uppercase tracking-[0.32em]">Desliza</span>
+          <span className="text-[12px] md:text-[10px] uppercase tracking-[0.32em]">Desliza</span>
           <motion.div
             animate={{ y: [0, 8, 0] }}
             transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}

@@ -33,7 +33,7 @@ export function Experience() {
           <div className="absolute inset-0 bg-gradient-to-t from-kuro-black/60 via-transparent to-transparent" />
           <div className="absolute top-6 left-6 flex items-center gap-3">
             <span className="w-2 h-2 rounded-full bg-kuro-red" />
-            <span className="text-[10px] uppercase tracking-[0.32em] text-kuro-cream/80">
+            <span className="text-[12px] md:text-[10px] uppercase tracking-[0.32em] text-kuro-cream/80">
               Interior · Los Palos Grandes
             </span>
           </div>
@@ -100,7 +100,7 @@ export function Experience() {
                   {s.num}
                   {s.suffix && <span className="text-kuro-red ml-1">{s.suffix}</span>}
                 </span>
-                <span className="text-[10px] uppercase tracking-[0.22em] text-kuro-stone leading-snug">
+                <span className="text-[12px] md:text-[10px] uppercase tracking-[0.22em] text-kuro-stone leading-snug">
                   {s.label}
                 </span>
               </motion.div>

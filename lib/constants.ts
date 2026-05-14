@@ -46,7 +46,7 @@ export const featuredDishes: Dish[] = [
       "Langostino tempura, aguacate, salsa negra de tinta de calamar",
     price: "$18",
     image:
-      "https://images.unsplash.com/photo-1617196034183-421b4040ed20?w=1200&q=85",
+      "https://images.unsplash.com/photo-1579871494447-9811cf80d66c?w=1200&q=85",
   },
   {
     name: "Omakase Nigiri",
@@ -109,7 +109,7 @@ export const testimonials = [
 ];
 
 export const igImages = [
-  "https://images.unsplash.com/photo-1617196034183-421b4040ed20?w=600&q=80",
+  "https://images.unsplash.com/photo-1579871494447-9811cf80d66c?w=600&q=80",
   "https://images.unsplash.com/photo-1611143669185-af224c5e3252?w=600&q=80",
   "https://images.unsplash.com/photo-1534482421-64566f976cfa?w=600&q=80",
   "https://images.unsplash.com/photo-1559410545-0bdcd187e0a6?w=600&q=80",

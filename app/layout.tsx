@@ -107,6 +107,11 @@ export default function RootLayout({
 }) {
   return (
     <html lang="es-VE" className={`${cormorant.variable} ${dmSans.variable}`}>
+      <head>
+        <link rel="preconnect" href="https://images.unsplash.com" crossOrigin="anonymous" />
+        <link rel="dns-prefetch" href="https://images.unsplash.com" />
+        <link rel="preconnect" href="https://a.basemaps.cartocdn.com" crossOrigin="anonymous" />
+      </head>
       <body>
         <script
           type="application/ld+json"

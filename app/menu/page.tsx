@@ -15,7 +15,7 @@ export default function MenuPage() {
     <>
       <section className="relative h-[58svh] min-h-[420px] w-full overflow-hidden bg-kuro-black">
         <Image
-          src="https://images.unsplash.com/photo-1617196034183-421b4040ed20?w=2000&q=85"
+          src="https://images.unsplash.com/photo-1579871494447-9811cf80d66c?w=2000&q=85"
           alt="Menú Kuro Sushi"
           fill
           priority
@@ -87,7 +87,7 @@ export default function MenuPage() {
             href={RESTAURANT.whatsappMenu}
             target="_blank"
             rel="noreferrer"
-            className="inline-flex items-center gap-3 px-7 py-4 bg-[#25D366] hover:bg-[#1da851] text-white text-[12px] uppercase tracking-[0.2em] font-medium transition-colors"
+            className="inline-flex items-center gap-3 px-7 py-4 bg-[#128C7E] hover:bg-[#0e6e63] text-white text-[12px] uppercase tracking-[0.2em] font-medium transition-colors min-h-[44px]"
           >
             <MessageCircle size={16} strokeWidth={1.6} />
             Preguntar por WhatsApp
@@ -110,7 +110,7 @@ function FilterPill({
   return (
     <button
       onClick={onClick}
-      className={`shrink-0 snap-start whitespace-nowrap px-5 py-2.5 text-[11px] uppercase tracking-[0.2em] border transition-all duration-300 ${
+      className={`shrink-0 snap-start whitespace-nowrap px-5 py-2.5 text-[12px] md:text-[11px] uppercase tracking-[0.2em] border transition-all duration-300 ${
         active
           ? "bg-kuro-red border-kuro-red text-kuro-cream"
           : "border-kuro-smoke text-kuro-stone hover:text-kuro-cream hover:border-kuro-gold/40"

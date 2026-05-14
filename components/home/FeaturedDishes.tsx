@@ -37,7 +37,7 @@ function DishTile({ dish, className, index }: { dish: Dish; className: string; i
         }}
       />
       <div className="absolute top-5 left-5 right-5 flex items-start justify-between">
-        <span className="text-[10px] uppercase tracking-[0.28em] text-kuro-gold backdrop-blur-md bg-kuro-black/40 px-3 py-1.5 border border-kuro-gold/20">
+        <span className="text-[12px] md:text-[10px] uppercase tracking-[0.28em] text-kuro-gold backdrop-blur-md bg-kuro-black/40 px-3 py-1.5 border border-kuro-gold/20">
           {dish.category}
         </span>
         <span

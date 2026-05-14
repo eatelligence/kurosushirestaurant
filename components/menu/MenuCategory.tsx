@@ -22,18 +22,18 @@ export function MenuCategory({ section }: { section: MenuSection }) {
             {section.kanji}
           </span>
           <div className="flex flex-col">
-            <span className="text-[10px] uppercase tracking-[0.32em] text-kuro-gold mb-1">
+            <span className="text-[12px] md:text-[10px] uppercase tracking-[0.32em] text-kuro-gold mb-1">
               {section.romanji}
             </span>
-            <h3
+            <h2
               className="text-kuro-cream text-[28px] md:text-[40px] leading-none"
               style={{ fontFamily: "var(--font-display)", fontWeight: 300 }}
             >
               {section.title}
-            </h3>
+            </h2>
           </div>
         </div>
-        <span className="text-[10px] uppercase tracking-[0.22em] text-kuro-stone hidden sm:block">
+        <span className="text-[12px] md:text-[10px] uppercase tracking-[0.22em] text-kuro-stone hidden sm:block">
           {section.items.length} platos
         </span>
       </motion.div>

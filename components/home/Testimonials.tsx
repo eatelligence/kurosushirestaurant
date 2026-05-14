@@ -76,7 +76,7 @@ export function Testimonials() {
                   <span className="text-kuro-cream text-sm tracking-[0.04em]">
                     — {t.author}
                   </span>
-                  <span className="text-[10px] uppercase tracking-[0.28em] text-kuro-stone">
+                  <span className="text-[12px] md:text-[10px] uppercase tracking-[0.28em] text-kuro-stone">
                     {t.location}
                   </span>
                 </div>
@@ -93,16 +93,23 @@ export function Testimonials() {
           >
             <ChevronLeft size={16} strokeWidth={1.4} />
           </button>
-          <div className="flex items-center gap-2">
+          <div className="flex items-center gap-1">
             {testimonials.map((_, k) => (
               <button
                 key={k}
                 onClick={() => setI(k)}
-                aria-label={`Testimonial ${k + 1}`}
-                className={`h-px transition-all duration-500 ${
-                  k === i ? "w-10 bg-kuro-red" : "w-4 bg-kuro-smoke hover:bg-kuro-stone"
-                }`}
-              />
+                aria-label={`Ver testimonio ${k + 1} de ${testimonials.length}`}
+                aria-current={k === i ? "true" : undefined}
+                className="relative w-11 h-11 flex items-center justify-center group"
+              >
+                <span
+                  className={`block h-px transition-all duration-500 ${
+                    k === i
+                      ? "w-10 bg-kuro-red"
+                      : "w-4 bg-kuro-smoke group-hover:bg-kuro-stone"
+                  }`}
+                />
+              </button>
             ))}
           </div>
           <button

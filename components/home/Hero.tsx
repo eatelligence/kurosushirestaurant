@@ -26,24 +26,16 @@ export function Hero() {
       </div>
 
       <div className="relative z-10 h-full flex flex-col items-center justify-center px-gutter">
-        {/* Top thin vertical line + eyebrow */}
-        <div className="flex flex-col items-center gap-6 mb-10 md:mb-14">
-          <div className="vert-line origin-top scale-y-0 animate-[heroLine_1s_cubic-bezier(0.22,1,0.36,1)_0.2s_forwards]" />
-          <span className="label-tracked opacity-0 animate-[heroFade_0.9s_ease-out_0.8s_forwards]">
-            Gastronomía Japonesa · Est. 2024
-          </span>
-        </div>
-
         {/* The wordmark */}
         <h1
-          className="text-display text-kuro-cream text-center opacity-0 translate-y-2 animate-[heroFadeUp_1.1s_cubic-bezier(0.22,1,0.36,1)_0.5s_forwards]"
+          className="text-display text-kuro-cream text-center opacity-0 translate-y-2 animate-[heroFadeUp_1.1s_cubic-bezier(0.22,1,0.36,1)_0.3s_forwards]"
           style={{ fontWeight: 300, letterSpacing: "0.04em" }}
         >
           KURO
         </h1>
 
         {/* Subtitle */}
-        <div className="mt-6 md:mt-8 flex items-center gap-5 opacity-0 animate-[heroFade_0.9s_ease-out_1.1s_forwards]">
+        <div className="mt-6 md:mt-8 flex items-center gap-5 opacity-0 animate-[heroFade_0.9s_ease-out_0.9s_forwards]">
           <span className="h-px w-10 md:w-16 bg-kuro-graphite" />
           <span className="text-[11px] md:text-[12px] uppercase tracking-[0.5em] text-kuro-stone">
             Sushi Restaurant

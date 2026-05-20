@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { ArrowDown } from "lucide-react";
 
 export function Hero() {
@@ -41,6 +42,18 @@ export function Hero() {
             Sushi Restaurant
           </span>
           <span className="h-px w-10 md:w-16 bg-kuro-graphite" />
+        </div>
+
+        {/* Fish mark */}
+        <div className="mt-10 md:mt-14 opacity-0 animate-[heroFade_1s_ease-out_1.2s_forwards]">
+          <Image
+            src="/logopesce.jpg"
+            alt="Kuro Sushi"
+            width={140}
+            height={80}
+            priority
+            className="w-[88px] md:w-[120px] h-auto mix-blend-screen opacity-90 select-none"
+          />
         </div>
       </div>
 

@@ -76,16 +76,14 @@ export function Navbar() {
         >
           <Link
             href="/"
-            className="flex flex-col leading-none group min-h-[44px] justify-center"
+            aria-label="Kuro Sushi · Inicio"
+            className="flex items-center leading-none group min-h-[44px] min-w-[44px] justify-center"
           >
             <span
-              className="text-kuro-cream text-[22px] md:text-[24px] tracking-[0.32em]"
-              style={{ fontFamily: "var(--font-display)", fontWeight: 400 }}
+              className="text-kuro-cream text-[30px] md:text-[34px] leading-none transition-colors group-hover:text-kuro-mist"
+              style={{ fontFamily: "'Hiragino Mincho ProN', 'Yu Mincho', 'MS Mincho', serif", fontWeight: 400 }}
             >
-              KURO
-            </span>
-            <span className="text-[10px] uppercase tracking-[0.3em] text-kuro-ash mt-1">
-              Sushi Restaurant
+              黒
             </span>
           </Link>
 
@@ -131,10 +129,10 @@ export function Navbar() {
           >
             <div className="flex items-center justify-between px-gutter h-20 md:h-24 border-b border-kuro-smoke/60">
               <span
-                className="text-kuro-cream text-[22px] tracking-[0.32em]"
-                style={{ fontFamily: "var(--font-display)", fontWeight: 400 }}
+                className="text-kuro-cream text-[30px] leading-none"
+                style={{ fontFamily: "'Hiragino Mincho ProN', 'Yu Mincho', 'MS Mincho', serif", fontWeight: 400 }}
               >
-                KURO
+                黒
               </span>
               <button
                 ref={closeRef}

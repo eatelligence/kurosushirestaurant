@@ -115,6 +115,27 @@ export function Footer() {
           <p>© {new Date().getFullYear()} Kuro Sushi Restaurant · Los Palos Grandes, Caracas</p>
           <p>Todos los derechos reservados</p>
         </div>
+
+        <div className="mt-4 text-[10px] tracking-[0.2em] text-kuro-ash text-center md:text-right">
+          Proudly powered by{" "}
+          <a
+            href="https://www.eatelligence.au/"
+            target="_blank"
+            rel="noreferrer"
+            className="text-kuro-stone hover:text-kuro-cream transition-colors"
+          >
+            Eatelligence
+          </a>{" "}
+          ·{" "}
+          <a
+            href="https://www.salvorincione.com/"
+            target="_blank"
+            rel="noreferrer"
+            className="text-kuro-stone hover:text-kuro-cream transition-colors"
+          >
+            Salvo Rincione
+          </a>
+        </div>
       </div>
     </footer>
   );

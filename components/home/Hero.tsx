@@ -18,15 +18,7 @@ export function Hero() {
         Caracas · Los Palos Grandes
       </div>
 
-      {/* Vertical kanji, bottom-left */}
-      <div
-        className="hidden md:block absolute left-10 lg:left-14 bottom-32 text-[11px] uppercase tracking-[0.4em] text-kuro-ash pointer-events-none opacity-0 animate-[heroFade_1.2s_ease-out_1s_forwards]"
-        style={{ writingMode: "vertical-rl" }}
-      >
-        黒 · 寿司
-      </div>
-
-      <div className="relative z-10 h-full flex flex-col items-center justify-center px-gutter">
+<div className="relative z-10 h-full flex flex-col items-center justify-center px-gutter">
         {/* The wordmark */}
         <h1
           className="text-display text-kuro-cream text-center opacity-0 translate-y-2 animate-[heroFadeUp_1.1s_cubic-bezier(0.22,1,0.36,1)_0.3s_forwards]"

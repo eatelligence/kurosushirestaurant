@@ -4,7 +4,6 @@ import { m as motion } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
 import { ArrowDown } from "lucide-react";
-import { RESTAURANT } from "@/lib/constants";
 
 const ease = [0.22, 1, 0.36, 1] as const;
 
@@ -30,7 +29,7 @@ export function Hero() {
           className="absolute inset-0 pointer-events-none"
           style={{
             background:
-              "linear-gradient(to bottom, rgba(10,10,10,0.4) 0%, rgba(10,10,10,0.1) 38%, rgba(10,10,10,0.75) 82%, rgba(10,10,10,1) 100%)",
+              "linear-gradient(to bottom, rgba(10,10,10,0.65) 0%, rgba(10,10,10,0.45) 38%, rgba(10,10,10,0.88) 78%, rgba(10,10,10,1) 100%)",
           }}
         />
       </div>
@@ -73,16 +72,7 @@ export function Hero() {
             precisión, fuego y silencio.
           </p>
 
-          <div className="mt-10 flex flex-col xs:flex-row gap-3 opacity-0 translate-y-3 animate-[heroFadeUp_0.7s_cubic-bezier(0.22,1,0.36,1)_1.15s_forwards]">
-            <a
-              href={RESTAURANT.whatsappReservation}
-              target="_blank"
-              rel="noreferrer"
-              className="btn-primary group"
-            >
-              <span>Contáctanos por WhatsApp</span>
-              <span className="block w-2 h-2 rounded-full bg-kuro-cream/80 group-hover:scale-150 transition-transform" />
-            </a>
+          <div className="mt-10 flex opacity-0 translate-y-3 animate-[heroFadeUp_0.7s_cubic-bezier(0.22,1,0.36,1)_1.15s_forwards]">
             <Link href="/menu" className="btn-outline-cream group">
               <span>Ver menú</span>
             </Link>

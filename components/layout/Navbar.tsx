@@ -110,7 +110,7 @@ export function Navbar() {
               rel="noreferrer"
               className="btn-ghost group"
             >
-              <span>Reservar</span>
+              <span>Contáctanos</span>
               <span className="block w-2 h-2 rounded-full bg-kuro-red group-hover:bg-kuro-cream transition-colors" />
             </a>
           </div>
@@ -192,7 +192,7 @@ export function Navbar() {
                     className="inline-block text-[40px] sm:text-[52px] leading-none italic text-kuro-red min-h-[44px]"
                     style={{ fontFamily: "var(--font-display)", fontWeight: 300 }}
                   >
-                    Reservar por WhatsApp →
+                    Contáctanos por WhatsApp →
                   </a>
                 </motion.li>
               </ul>

@@ -11,33 +11,22 @@ import { RESTAURANT } from "@/lib/constants";
 const schema = z.object({
   name: z.string().min(2, "Por favor ingresa tu nombre completo"),
   phone: z.string().min(7, "Número de WhatsApp inválido"),
-  date: z.string().min(1, "Selecciona una fecha"),
-  time: z.string().min(1, "Selecciona una hora"),
-  guests: z.string().min(1, "Indica el número de personas"),
-  occasion: z.string().optional(),
-  notes: z.string().optional(),
+  message: z.string().min(5, "Cuéntanos brevemente tu consulta"),
 });
 
 type FormData = z.infer<typeof schema>;
-
-const times = ["12:00","12:30","13:00","13:30","14:00","19:00","19:30","20:00","20:30","21:00","21:30","22:00"];
-const guests = ["1","2","3-4","5-6","7+"];
-const occasions = ["Ninguna","Cumpleaños","Aniversario","Cena de negocios","Otro"];
 
 const WHATSAPP_NUMBER = "582125551234";
 
 function buildWhatsAppLink(d: FormData) {
   const lines = [
-    `*Reservación · Kuro Sushi*`,
+    `*Contacto · Kuro Sushi*`,
     ``,
     `Nombre: ${d.name}`,
     `WhatsApp: ${d.phone}`,
-    `Fecha: ${d.date}`,
-    `Hora: ${d.time}`,
-    `Personas: ${d.guests}`,
-    d.occasion && d.occasion !== "Ninguna" ? `Ocasión: ${d.occasion}` : null,
-    d.notes ? `Notas: ${d.notes}` : null,
-  ].filter(Boolean);
+    ``,
+    d.message,
+  ];
   return `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(lines.join("\n"))}`;
 }
 
@@ -49,7 +38,6 @@ export default function ContactoPage() {
     formState: { errors, isSubmitting },
   } = useForm<FormData>({
     resolver: zodResolver(schema),
-    defaultValues: { occasion: "Ninguna" },
   });
 
   const onSubmit = (data: FormData) => {
@@ -76,8 +64,8 @@ export default function ContactoPage() {
             <span className="display-italic text-kuro-red">por WhatsApp.</span>
           </h1>
           <p className="mt-6 text-kuro-stone text-base md:text-lg max-w-xl leading-relaxed">
-            Reservas, pedidos y consultas: todo se gestiona en tiempo real por
-            WhatsApp. Te respondemos en menos de dos horas.
+            Pedidos y consultas: todo se gestiona en tiempo real por WhatsApp.
+            Te respondemos en menos de dos horas.
           </p>
 
           <div className="mt-8 flex flex-col sm:flex-row gap-3">
@@ -88,7 +76,7 @@ export default function ContactoPage() {
               className="inline-flex items-center justify-center gap-3 px-7 py-4 bg-[#075E54] hover:bg-[#0a7a6e] text-white text-[12px] uppercase tracking-[0.2em] font-medium transition-colors min-h-[48px]"
             >
               <MessageCircle size={16} strokeWidth={1.6} aria-hidden="true" />
-              Reservar por WhatsApp
+              Contáctanos por WhatsApp
             </a>
             <a
               href={RESTAURANT.phoneHref}
@@ -131,7 +119,7 @@ export default function ContactoPage() {
                 </h2>
                 <p className="mt-4 text-kuro-stone max-w-md mx-auto leading-relaxed">
                   Hemos abierto WhatsApp con tu solicitud. Envíanos el mensaje
-                  y te confirmaremos la reserva en menos de 2 horas.
+                  y te responderemos en menos de 2 horas.
                 </p>
                 <button
                   type="button"
@@ -165,41 +153,11 @@ export default function ContactoPage() {
                   />
                 </Field>
 
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                  <Field label="Fecha" error={errors.date?.message} required>
-                    <input type="date" {...register("date")} className="input" />
-                  </Field>
-                  <Field label="Hora" error={errors.time?.message} required>
-                    <select {...register("time")} className="input" defaultValue="">
-                      <option value="" disabled>Seleccionar</option>
-                      {times.map((t) => (
-                        <option key={t} value={t}>{t}</option>
-                      ))}
-                    </select>
-                  </Field>
-                  <Field label="Personas" error={errors.guests?.message} required>
-                    <select {...register("guests")} className="input" defaultValue="">
-                      <option value="" disabled>Seleccionar</option>
-                      {guests.map((g) => (
-                        <option key={g} value={g}>{g}</option>
-                      ))}
-                    </select>
-                  </Field>
-                </div>
-
-                <Field label="Ocasión especial">
-                  <select {...register("occasion")} className="input">
-                    {occasions.map((o) => (
-                      <option key={o} value={o}>{o}</option>
-                    ))}
-                  </select>
-                </Field>
-
-                <Field label="Mensaje (opcional)">
+                <Field label="Mensaje" error={errors.message?.message} required>
                   <textarea
-                    {...register("notes")}
-                    rows={4}
-                    placeholder="Alergias, preferencias, asientos, pedido especial…"
+                    {...register("message")}
+                    rows={5}
+                    placeholder="Cuéntanos: pedido, consulta sobre el menú, evento privado, alergias…"
                     className="input resize-none"
                   />
                 </Field>
@@ -266,8 +224,7 @@ export default function ContactoPage() {
 
             <InfoBlock icon={MessageCircle} title="Políticas">
               <ul className="text-sm text-kuro-stone leading-relaxed space-y-2">
-                <li>· Mantenemos las mesas hasta 20 min después de la hora.</li>
-                <li>· Grupos de 7+ personas: reserva mínima 48 h antes.</li>
+                <li>· Grupos de 7+ personas: contáctanos con 48 h de antelación.</li>
                 <li>· Eventos privados: <a href={`mailto:${RESTAURANT.email}`} className="text-kuro-gold hover:text-kuro-red transition-colors">{RESTAURANT.email}</a></li>
               </ul>
             </InfoBlock>

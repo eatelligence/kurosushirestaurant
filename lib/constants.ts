@@ -4,13 +4,13 @@ export const RESTAURANT = {
   tagline: "El arte japonés en el corazón de Caracas",
   phone: "+58 212 555 1234",
   phoneHref: "tel:+582125551234",
-  whatsapp: "https://wa.me/582125551234?text=Hola%2C%20quiero%20hacer%20una%20reservaci%C3%B3n%20en%20Kuro%20Sushi",
+  whatsapp: "https://wa.me/582125551234?text=Hola%2C%20quiero%20contactarme%20con%20Kuro%20Sushi",
   whatsappReservation:
-    "https://wa.me/582125551234?text=Hola%2C%20quiero%20hacer%20una%20reservaci%C3%B3n%20en%20Kuro%20Sushi",
+    "https://wa.me/582125551234?text=Hola%2C%20quiero%20contactarme%20con%20Kuro%20Sushi",
   whatsappMenu:
     "https://wa.me/582125551234?text=Hola%2C%20tengo%20una%20pregunta%20sobre%20el%20men%C3%BA",
   email: "info@kurosushirestaurant.com",
-  reservationsEmail: "reservas@kurosushirestaurant.com",
+  contactEmail: "contacto@kurosushirestaurant.com",
   address: {
     street: "3ra Avenida, Los Palos Grandes",
     city: "Chacao, Caracas 1060",

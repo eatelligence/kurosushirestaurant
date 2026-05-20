@@ -29,7 +29,7 @@ export const metadata: Metadata = {
     template: "%s | Kuro Sushi",
   },
   description:
-    "El mejor sushi de Caracas en Los Palos Grandes. Gastronomía japonesa contemporánea, rolls de autor y experiencia premium. Reserva tu mesa en Kuro Sushi.",
+    "El mejor sushi de Caracas en Los Palos Grandes. Gastronomía japonesa contemporánea, rolls de autor y experiencia premium. Contáctanos por WhatsApp.",
   keywords: [
     "sushi Caracas",
     "restaurante japonés Caracas",
@@ -46,7 +46,7 @@ export const metadata: Metadata = {
     siteName: "Kuro Sushi Restaurant",
     title: "Kuro Sushi Restaurant | Los Palos Grandes, Caracas",
     description:
-      "Gastronomía japonesa contemporánea en el corazón de Los Palos Grandes. Reserva tu mesa en Kuro Sushi.",
+      "Gastronomía japonesa contemporánea en el corazón de Los Palos Grandes. Contáctanos por WhatsApp.",
     images: [
       {
         url: "https://images.unsplash.com/photo-1553621042-f6e147245754?w=1200&q=85",
@@ -98,7 +98,7 @@ const jsonLd = {
   openingHours: ["Mo-Th 12:00-23:00", "Fr-Sa 12:00-01:00", "Su 12:00-22:00"],
   telephone: RESTAURANT.phone,
   url: "https://kurosushirestaurant.com",
-  acceptsReservations: true,
+  acceptsReservations: false,
 };
 
 export default function RootLayout({

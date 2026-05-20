@@ -80,7 +80,7 @@ export function Hero() {
               rel="noreferrer"
               className="btn-primary group"
             >
-              <span>Reservar por WhatsApp</span>
+              <span>Contáctanos por WhatsApp</span>
               <span className="block w-2 h-2 rounded-full bg-kuro-cream/80 group-hover:scale-150 transition-transform" />
             </a>
             <Link href="/menu" className="btn-outline-cream group">

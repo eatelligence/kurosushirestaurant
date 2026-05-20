@@ -12,17 +12,17 @@ export function MenuCategory({ section }: { section: MenuSection }) {
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, margin: "-80px" }}
         transition={{ duration: 0.8 }}
-        className="flex items-end justify-between gap-6 border-b border-kuro-gold/30 pb-6 mb-2"
+        className="flex items-end justify-between gap-6 border-b border-kuro-smoke pb-6 mb-2"
       >
         <div className="flex items-baseline gap-5">
           <span
-            className="text-kuro-red/70 text-[44px] md:text-[56px] leading-none"
+            className="text-kuro-mist text-[44px] md:text-[56px] leading-none"
             style={{ fontFamily: "var(--font-display)", fontStyle: "italic", fontWeight: 300 }}
           >
             {section.kanji}
           </span>
           <div className="flex flex-col">
-            <span className="text-[12px] md:text-[10px] uppercase tracking-[0.32em] text-kuro-gold mb-1">
+            <span className="text-[10px] uppercase tracking-[0.32em] text-kuro-ash mb-1">
               {section.romanji}
             </span>
             <h2
@@ -33,7 +33,7 @@ export function MenuCategory({ section }: { section: MenuSection }) {
             </h2>
           </div>
         </div>
-        <span className="text-[12px] md:text-[10px] uppercase tracking-[0.22em] text-kuro-stone hidden sm:block">
+        <span className="text-[10px] uppercase tracking-[0.28em] text-kuro-ash hidden sm:block">
           {section.items.length} platos
         </span>
       </motion.div>

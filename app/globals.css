@@ -5,14 +5,12 @@
   --color-kuro-obsidian: #111111;
   --color-kuro-charcoal: #1C1C1C;
   --color-kuro-smoke: #2A2A2A;
-  --color-kuro-red: #C0392B;
-  --color-kuro-red-light: #E74C3C;
-  --color-kuro-red-muted: #7D241A;
-  --color-kuro-cream: #F5F0E8;
-  --color-kuro-ivory: #E8DDD0;
-  --color-kuro-stone: #9E9189;
-  --color-kuro-sand: #C9B99A;
-  --color-kuro-gold: #C9A96E;
+  --color-kuro-graphite: #3A3A3A;
+  --color-kuro-ash: #5A5A5A;
+  --color-kuro-mist: #8A8A8A;
+  --color-kuro-stone: #B0AEB0;
+  --color-kuro-ivory: #E8E6E2;
+  --color-kuro-cream: #F5F2EC;
 
   --font-display: var(--font-cormorant), Georgia, serif;
   --font-sans: var(--font-dm-sans), system-ui, sans-serif;
@@ -27,13 +25,13 @@
 
   html {
     scroll-behavior: smooth;
-    scrollbar-color: #C0392B #0A0A0A;
+    scrollbar-color: #3A3A3A #0A0A0A;
     -webkit-text-size-adjust: 100%;
   }
 
   body {
     background: #0A0A0A;
-    color: #F5F0E8;
+    color: #F5F2EC;
     font-family: var(--font-sans);
     font-weight: 400;
     -webkit-font-smoothing: antialiased;
@@ -43,8 +41,8 @@
   }
 
   ::selection {
-    background: #C0392B;
-    color: #F5F0E8;
+    background: #3A3A3A;
+    color: #F5F2EC;
   }
 
   ::-webkit-scrollbar {
@@ -53,9 +51,10 @@
   }
   ::-webkit-scrollbar-track { background: #0A0A0A; }
   ::-webkit-scrollbar-thumb {
-    background: linear-gradient(#7D241A, #C0392B);
+    background: #2A2A2A;
     border-radius: 0;
   }
+  ::-webkit-scrollbar-thumb:hover { background: #3A3A3A; }
 
   h1, h2, h3, h4, h5 {
     font-family: var(--font-display);
@@ -67,20 +66,20 @@
   .label-tracked {
     font-family: var(--font-sans);
     text-transform: uppercase;
-    letter-spacing: 0.24em;
-    font-size: 12px;
+    letter-spacing: 0.32em;
+    font-size: 11px;
     font-weight: 500;
-    color: var(--color-kuro-gold);
+    color: var(--color-kuro-mist);
     line-height: 1.4;
   }
 
   .label-tracked-stone {
     font-family: var(--font-sans);
     text-transform: uppercase;
-    letter-spacing: 0.24em;
-    font-size: 12px;
+    letter-spacing: 0.32em;
+    font-size: 11px;
     font-weight: 500;
-    color: var(--color-kuro-stone);
+    color: var(--color-kuro-ash);
     line-height: 1.4;
   }
 
@@ -99,7 +98,7 @@
     position: absolute;
     inset: 0;
     pointer-events: none;
-    opacity: 0.06;
+    opacity: 0.05;
     mix-blend-mode: overlay;
     background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.6 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
   }
@@ -107,54 +106,12 @@
   .vert-line {
     width: 1px;
     height: 80px;
-    background: linear-gradient(to bottom, transparent, #C9A96E, transparent);
+    background: linear-gradient(to bottom, transparent, rgba(176,174,176,0.6), transparent);
   }
 
   .hairline-x {
     height: 1px;
-    background: linear-gradient(to right, transparent, rgba(201,169,110,0.4), transparent);
-  }
-
-  .btn-primary {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    gap: 0.6rem;
-    padding: 0.95rem 1.8rem;
-    background: #C0392B;
-    color: #F5F0E8;
-    font-size: 12px;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    font-weight: 500;
-    border: 1px solid #C0392B;
-    transition: background 0.35s ease, color 0.35s ease, transform 0.35s ease;
-    cursor: pointer;
-  }
-  .btn-primary:hover {
-    background: #E74C3C;
-    border-color: #E74C3C;
-  }
-
-  .btn-ghost {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    gap: 0.6rem;
-    padding: 0.95rem 1.8rem;
-    background: transparent;
-    color: #C0392B;
-    font-size: 12px;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    font-weight: 500;
-    border: 1px solid #C0392B;
-    transition: background 0.35s ease, color 0.35s ease;
-    cursor: pointer;
-  }
-  .btn-ghost:hover {
-    background: #C0392B;
-    color: #F5F0E8;
+    background: linear-gradient(to right, transparent, rgba(176,174,176,0.35), transparent);
   }
 
   .btn-outline-cream {
@@ -164,18 +121,18 @@
     gap: 0.6rem;
     padding: 0.95rem 1.8rem;
     background: transparent;
-    color: #F5F0E8;
-    font-size: 12px;
-    letter-spacing: 0.2em;
+    color: #F5F2EC;
+    font-size: 11px;
+    letter-spacing: 0.28em;
     text-transform: uppercase;
     font-weight: 500;
-    border: 1px solid rgba(245,240,232,0.25);
+    border: 1px solid rgba(245,242,236,0.22);
     transition: all 0.35s ease;
     cursor: pointer;
   }
   .btn-outline-cream:hover {
-    border-color: #C9A96E;
-    color: #C9A96E;
+    border-color: #F5F2EC;
+    color: #F5F2EC;
   }
 }
 
@@ -189,8 +146,8 @@
   @media (min-width: 1024px) { .py-section { padding-top: 10rem; padding-bottom: 10rem; } }
 
   .text-display {
-    font-size: clamp(52px, 8vw, 112px);
-    line-height: 0.95;
+    font-size: clamp(72px, 14vw, 220px);
+    line-height: 0.92;
     letter-spacing: -0.02em;
   }
   .text-h1 { font-size: clamp(36px, 5vw, 64px); line-height: 1.05; letter-spacing: -0.01em; }
@@ -200,14 +157,8 @@
   .no-scrollbar::-webkit-scrollbar { display: none; }
   .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
 
-  .clip-reveal-init { clip-path: inset(100% 0 0 0); }
-  .clip-reveal-show {
-    clip-path: inset(0% 0 0 0);
-    transition: clip-path 1.2s cubic-bezier(0.76,0,0.24,1);
-  }
-
   .underline-slide {
-    background-image: linear-gradient(#C0392B, #C0392B);
+    background-image: linear-gradient(#F5F2EC, #F5F2EC);
     background-size: 0% 1px;
     background-repeat: no-repeat;
     background-position: 0 100%;
@@ -227,7 +178,6 @@
   to { transform: scaleY(1); }
 }
 @media (prefers-reduced-motion: reduce) {
-  .hero-fade,
   [class*="animate-[hero"] {
     animation: none !important;
     opacity: 1 !important;
@@ -239,15 +189,16 @@
 .leaflet-container {
   background: #0A0A0A !important;
   font-family: var(--font-sans) !important;
+  filter: grayscale(100%) brightness(0.85);
 }
 .leaflet-control-attribution {
   background: rgba(10,10,10,0.7) !important;
-  color: #9E9189 !important;
+  color: #5A5A5A !important;
   font-size: 9px !important;
 }
-.leaflet-control-attribution a { color: #C9A96E !important; }
+.leaflet-control-attribution a { color: #B0AEB0 !important; }
 .leaflet-bar a {
   background: #111111 !important;
-  color: #F5F0E8 !important;
+  color: #F5F2EC !important;
   border-color: #2A2A2A !important;
 }

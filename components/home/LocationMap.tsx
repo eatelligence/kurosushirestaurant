@@ -43,10 +43,10 @@ export default function LocationMap() {
         className: "",
         html: `
           <div style="position:relative;width:44px;height:44px;">
-            <div style="position:absolute;inset:0;border-radius:50%;background:rgba(192,57,43,0.3);animation:kuropulse 2s ease-out infinite;"></div>
-            <div style="position:absolute;inset:7px;border-radius:50%;background:#C0392B;display:flex;align-items:center;justify-content:center;color:#F5F0E8;font-family:Georgia,serif;font-style:italic;font-size:16px;box-shadow:0 6px 20px rgba(192,57,43,0.5);border:1px solid rgba(245,240,232,0.2);">K</div>
+            <div style="position:absolute;inset:0;border-radius:50%;background:rgba(245,242,236,0.18);animation:kuropulse 2.4s ease-out infinite;"></div>
+            <div style="position:absolute;inset:7px;border-radius:50%;background:#F5F2EC;display:flex;align-items:center;justify-content:center;color:#0A0A0A;font-family:Georgia,serif;font-style:italic;font-weight:600;font-size:16px;box-shadow:0 6px 20px rgba(0,0,0,0.6);border:1px solid rgba(10,10,10,0.2);">K</div>
           </div>
-          <style>@keyframes kuropulse{0%{transform:scale(0.6);opacity:0.8}100%{transform:scale(1.6);opacity:0}}</style>
+          <style>@keyframes kuropulse{0%{transform:scale(0.6);opacity:0.7}100%{transform:scale(1.7);opacity:0}}</style>
         `,
         iconSize: [44, 44],
         iconAnchor: [22, 22],
@@ -68,7 +68,7 @@ export default function LocationMap() {
   return (
     <div
       ref={containerRef}
-      className="w-full h-full min-h-[420px] rounded-[12px] overflow-hidden border border-kuro-smoke"
+      className="w-full h-full min-h-[440px] overflow-hidden border border-kuro-smoke"
       aria-label="Mapa de Kuro Sushi en Los Palos Grandes"
     />
   );

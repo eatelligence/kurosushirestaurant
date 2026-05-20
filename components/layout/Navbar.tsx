@@ -31,7 +31,6 @@ export function Navbar() {
     }
 
     document.body.style.overflow = "hidden";
-    // focus close button on open
     requestAnimationFrame(() => closeRef.current?.focus());
 
     const onKey = (e: KeyboardEvent) => {
@@ -67,7 +66,7 @@ export function Navbar() {
       <header
         className={`fixed top-0 inset-x-0 z-40 transition-all duration-500 ${
           scrolled
-            ? "bg-[rgba(10,10,10,0.88)] backdrop-blur-xl border-b border-kuro-gold/15"
+            ? "bg-[rgba(10,10,10,0.9)] backdrop-blur-xl border-b border-kuro-smoke/60"
             : "bg-transparent border-b border-transparent"
         }`}
       >
@@ -85,7 +84,7 @@ export function Navbar() {
             >
               KURO
             </span>
-            <span className="text-[12px] md:text-[10px] uppercase tracking-[0.3em] text-kuro-stone mt-1">
+            <span className="text-[10px] uppercase tracking-[0.3em] text-kuro-ash mt-1">
               Sushi Restaurant
             </span>
           </Link>
@@ -95,25 +94,13 @@ export function Navbar() {
               <li key={l.href}>
                 <Link
                   href={l.href}
-                  className="text-[13px] uppercase tracking-[0.22em] text-kuro-stone hover:text-kuro-cream underline-slide pb-1 transition-colors min-h-[44px] inline-flex items-center"
+                  className="text-[12px] uppercase tracking-[0.28em] text-kuro-stone hover:text-kuro-cream underline-slide pb-1 transition-colors min-h-[44px] inline-flex items-center"
                 >
                   {l.label}
                 </Link>
               </li>
             ))}
           </ul>
-
-          <div className="hidden lg:block">
-            <a
-              href={RESTAURANT.whatsappReservation}
-              target="_blank"
-              rel="noreferrer"
-              className="btn-ghost group"
-            >
-              <span>Contáctanos</span>
-              <span className="block w-2 h-2 rounded-full bg-kuro-red group-hover:bg-kuro-cream transition-colors" />
-            </a>
-          </div>
 
           <button
             ref={triggerRef}
@@ -142,7 +129,7 @@ export function Navbar() {
             transition={{ duration: 0.55, ease: [0.76, 0, 0.24, 1] }}
             className="fixed inset-0 z-50 bg-kuro-black grain flex flex-col"
           >
-            <div className="flex items-center justify-between px-gutter h-20 md:h-24 border-b border-kuro-smoke/40">
+            <div className="flex items-center justify-between px-gutter h-20 md:h-24 border-b border-kuro-smoke/60">
               <span
                 className="text-kuro-cream text-[22px] tracking-[0.32em]"
                 style={{ fontFamily: "var(--font-display)", fontWeight: 400 }}
@@ -171,43 +158,26 @@ export function Navbar() {
                     <Link
                       href={l.href}
                       onClick={() => setOpen(false)}
-                      className="block text-[40px] sm:text-[52px] leading-none text-kuro-cream hover:text-kuro-red focus-visible:text-kuro-red transition-colors min-h-[44px]"
+                      className="block text-[40px] sm:text-[52px] leading-none text-kuro-cream hover:text-kuro-mist focus-visible:text-kuro-mist transition-colors min-h-[44px]"
                       style={{ fontFamily: "var(--font-display)", fontWeight: 300 }}
                     >
                       {l.label}
                     </Link>
                   </motion.li>
                 ))}
-                <motion.li
-                  initial={{ opacity: 0, x: 40 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ duration: 0.5, delay: 0.5 }}
-                  className="pt-4"
-                >
-                  <a
-                    href={RESTAURANT.whatsappReservation}
-                    target="_blank"
-                    rel="noreferrer"
-                    onClick={() => setOpen(false)}
-                    className="inline-block text-[40px] sm:text-[52px] leading-none italic text-kuro-red min-h-[44px]"
-                    style={{ fontFamily: "var(--font-display)", fontWeight: 300 }}
-                  >
-                    Contáctanos por WhatsApp →
-                  </a>
-                </motion.li>
               </ul>
             </nav>
 
-            <div className="px-gutter pb-10 border-t border-kuro-smoke/40 pt-6 flex items-center justify-between flex-wrap gap-4">
+            <div className="px-gutter pb-10 border-t border-kuro-smoke/60 pt-6 flex items-center justify-between flex-wrap gap-4">
               <a
                 href={RESTAURANT.social.instagram}
                 target="_blank"
                 rel="noreferrer"
                 aria-label={`Instagram ${RESTAURANT.social.instagramHandle}`}
-                className="flex items-center gap-2 text-kuro-stone hover:text-kuro-gold transition-colors min-h-[44px]"
+                className="flex items-center gap-2 text-kuro-stone hover:text-kuro-cream transition-colors min-h-[44px]"
               >
                 <Instagram size={16} strokeWidth={1.4} aria-hidden="true" />
-                <span className="text-[12px] uppercase tracking-[0.22em]">
+                <span className="text-[11px] uppercase tracking-[0.28em]">
                   {RESTAURANT.social.instagramHandle}
                 </span>
               </a>
@@ -215,7 +185,7 @@ export function Navbar() {
                 href={RESTAURANT.whatsapp}
                 target="_blank"
                 rel="noreferrer"
-                className="text-[12px] uppercase tracking-[0.22em] text-kuro-gold min-h-[44px] inline-flex items-center"
+                className="text-[11px] uppercase tracking-[0.28em] text-kuro-stone hover:text-kuro-cream min-h-[44px] inline-flex items-center transition-colors"
               >
                 WhatsApp ↗
               </a>

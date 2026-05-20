@@ -1,7 +1,6 @@
 "use client";
 
 import { useState } from "react";
-import Image from "next/image";
 import { m as motion } from "framer-motion";
 import { menuData, RESTAURANT } from "@/lib/constants";
 import { MenuCategory } from "@/components/menu/MenuCategory";
@@ -13,47 +12,32 @@ export default function MenuPage() {
 
   return (
     <>
-      <section className="relative h-[58svh] min-h-[420px] w-full overflow-hidden bg-kuro-black">
-        <Image
-          src="https://images.unsplash.com/photo-1579871494447-9811cf80d66c?w=2000&q=85"
-          alt="Menú Kuro Sushi"
-          fill
-          priority
-          sizes="100vw"
-          className="object-cover"
-        />
-        <div
-          className="absolute inset-0"
-          style={{
-            background:
-              "linear-gradient(180deg, rgba(10,10,10,0.55) 0%, rgba(10,10,10,0.35) 50%, rgba(10,10,10,1) 100%)",
-          }}
-        />
-        <div className="relative z-10 h-full flex flex-col justify-end px-gutter pb-16 md:pb-24 max-w-[1280px] mx-auto">
+      <section className="pt-36 md:pt-44 pb-12 bg-kuro-black">
+        <div className="max-w-[1280px] mx-auto px-gutter">
           <motion.div
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, delay: 0.4 }}
-            className="flex items-center gap-3 mb-5"
+            transition={{ duration: 0.6, delay: 0.1 }}
+            className="flex items-center gap-3 mb-6"
           >
-            <span className="h-px w-10 bg-kuro-gold" />
-            <span className="label-tracked">Carta · Kuro Sushi</span>
+            <span className="h-px w-10 bg-kuro-graphite" />
+            <span className="label-tracked">Menú · 御品書</span>
           </motion.div>
           <motion.h1
-            initial={{ opacity: 0, y: 24 }}
+            initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.9, delay: 0.55 }}
+            transition={{ duration: 0.7, delay: 0.2 }}
             className="text-h1 text-kuro-cream max-w-3xl"
             style={{ fontFamily: "var(--font-display)", fontWeight: 300 }}
           >
-            Nuestra <span className="display-italic text-kuro-red">Carta</span>.
+            La carta,
             <br />
-            Una declaración de intenciones.
+            <span className="display-italic text-kuro-stone">de hoy.</span>
           </motion.h1>
         </div>
       </section>
 
-      <div className="sticky top-20 md:top-24 z-30 bg-kuro-black/85 backdrop-blur-xl border-b border-kuro-smoke/60">
+      <div className="sticky top-20 md:top-24 z-30 bg-kuro-black/90 backdrop-blur-xl border-b border-kuro-smoke/60">
         <div className="max-w-[1280px] mx-auto px-gutter">
           <div className="flex gap-2 md:gap-3 overflow-x-auto no-scrollbar py-4 snap-x">
             <FilterPill active={active === "all"} onClick={() => setActive("all")} label="Todos" />
@@ -87,7 +71,7 @@ export default function MenuPage() {
             href={RESTAURANT.whatsappMenu}
             target="_blank"
             rel="noreferrer"
-            className="inline-flex items-center gap-3 px-7 py-4 bg-[#075E54] hover:bg-[#0e6e63] text-white text-[12px] uppercase tracking-[0.2em] font-medium transition-colors min-h-[44px]"
+            className="inline-flex items-center gap-3 px-7 py-4 bg-[#075E54] hover:bg-[#0a7a6e] text-white text-[11px] uppercase tracking-[0.28em] font-medium transition-colors min-h-[44px]"
           >
             <MessageCircle size={16} strokeWidth={1.6} />
             Preguntar por WhatsApp
@@ -110,10 +94,10 @@ function FilterPill({
   return (
     <button
       onClick={onClick}
-      className={`shrink-0 snap-start whitespace-nowrap px-5 py-2.5 text-[12px] md:text-[11px] uppercase tracking-[0.2em] border transition-all duration-300 ${
+      className={`shrink-0 snap-start whitespace-nowrap px-5 py-2.5 text-[11px] uppercase tracking-[0.28em] border transition-all duration-300 ${
         active
-          ? "bg-kuro-red border-kuro-red text-kuro-cream"
-          : "border-kuro-smoke text-kuro-stone hover:text-kuro-cream hover:border-kuro-gold/40"
+          ? "bg-kuro-cream border-kuro-cream text-kuro-black"
+          : "border-kuro-smoke text-kuro-stone hover:text-kuro-cream hover:border-kuro-graphite"
       }`}
     >
       {label}

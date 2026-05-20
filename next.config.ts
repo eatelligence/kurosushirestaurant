@@ -8,7 +8,9 @@ const config: NextConfig = {
   },
   async redirects() {
     return [
-      { source: "/reservations", destination: "/contacto", permanent: true },
+      { source: "/about", destination: "/nosotros", permanent: true },
+      { source: "/contacto", destination: "/ubicacion", permanent: true },
+      { source: "/reservations", destination: "/ubicacion", permanent: true },
     ];
   },
 };

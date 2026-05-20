@@ -1,98 +1,61 @@
-"use client";
-
-import { m as motion } from "framer-motion";
-import Image from "next/image";
-import Link from "next/link";
 import { ArrowDown } from "lucide-react";
-
-const ease = [0.22, 1, 0.36, 1] as const;
-
-const HERO_BLUR =
-  "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxNiAxMCI+PHJlY3Qgd2lkdGg9IjE2IiBoZWlnaHQ9IjEwIiBmaWxsPSIjMGEwYTBhIi8+PHJlY3QgeD0iMCIgeT0iMCIgd2lkdGg9IjE2IiBoZWlnaHQ9IjUiIGZpbGw9IiMxYzFjMWMiIG9wYWNpdHk9IjAuNiIvPjwvc3ZnPg==";
 
 export function Hero() {
   return (
-    <section className="relative h-[100svh] min-h-[640px] w-full overflow-hidden bg-kuro-black">
-      <div className="absolute inset-0">
-        <Image
-          src="https://images.unsplash.com/photo-1553621042-f6e147245754?w=1280&q=70&auto=format&fit=crop"
-          alt="Sushi premium en Kuro Caracas"
-          fill
-          priority
-          fetchPriority="high"
-          sizes="100vw"
-          placeholder="blur"
-          blurDataURL={HERO_BLUR}
-          className="object-cover"
-        />
-        <div
-          className="absolute inset-0 pointer-events-none"
-          style={{
-            background:
-              "linear-gradient(to bottom, rgba(10,10,10,0.65) 0%, rgba(10,10,10,0.45) 38%, rgba(10,10,10,0.88) 78%, rgba(10,10,10,1) 100%)",
-          }}
-        />
+    <section className="relative h-[100svh] min-h-[640px] w-full overflow-hidden bg-kuro-black grain">
+      {/* Vertical hairlines flanking the wordmark */}
+      <div className="hidden md:block absolute top-0 bottom-0 left-1/2 -translate-x-1/2 w-full max-w-[1480px] pointer-events-none">
+        <div className="absolute top-0 bottom-0 left-6 lg:left-10 w-px bg-gradient-to-b from-transparent via-kuro-graphite to-transparent opacity-0 animate-[heroFade_1.2s_ease-out_0.3s_forwards]" />
+        <div className="absolute top-0 bottom-0 right-6 lg:right-10 w-px bg-gradient-to-b from-transparent via-kuro-graphite to-transparent opacity-0 animate-[heroFade_1.2s_ease-out_0.3s_forwards]" />
       </div>
 
-      <div className="hidden md:block absolute top-0 bottom-0 left-6 lg:left-10 pointer-events-none">
-        <div
-          className="w-px h-full bg-gradient-to-b from-transparent via-kuro-gold/40 to-transparent opacity-0 animate-[heroFade_1s_ease-out_0.4s_forwards]"
-        />
-      </div>
+      {/* Vertical context label, top-right */}
       <div
-        className="hidden md:block absolute right-6 lg:right-10 top-32 text-[10px] uppercase tracking-[0.4em] text-kuro-stone pointer-events-none opacity-0 animate-[heroFade_1s_ease-out_1.2s_forwards]"
+        className="hidden md:block absolute right-10 lg:right-14 top-28 text-[10px] uppercase tracking-[0.4em] text-kuro-ash pointer-events-none opacity-0 animate-[heroFade_1.2s_ease-out_1s_forwards]"
         style={{ writingMode: "vertical-rl" }}
       >
-        黒 · Caracas · 2024
+        Caracas · Los Palos Grandes
       </div>
 
-      <div className="relative z-10 h-full flex flex-col">
-        <div className="flex-1" />
-        <div className="px-gutter pb-20 md:pb-28 max-w-[1280px] w-full mx-auto">
-          <div className="vert-line mb-8 origin-top scale-y-0 animate-[heroLine_0.9s_cubic-bezier(0.22,1,0.36,1)_0.2s_forwards]" />
+      {/* Vertical kanji, bottom-left */}
+      <div
+        className="hidden md:block absolute left-10 lg:left-14 bottom-32 text-[11px] uppercase tracking-[0.4em] text-kuro-ash pointer-events-none opacity-0 animate-[heroFade_1.2s_ease-out_1s_forwards]"
+        style={{ writingMode: "vertical-rl" }}
+      >
+        黒 · 寿司
+      </div>
 
-          <div className="flex items-center gap-4 mb-8 opacity-0 translate-y-3 animate-[heroFadeUp_0.7s_cubic-bezier(0.22,1,0.36,1)_0.35s_forwards]">
-            <span className="h-px w-10 bg-kuro-gold" />
-            <span className="label-tracked">
-              Gastronomía Japonesa · Los Palos Grandes
-            </span>
-            <span className="hidden sm:block h-px w-10 bg-kuro-gold" />
-          </div>
-
-          <h1 className="text-display text-kuro-cream max-w-[14ch]">
-            <span className="block display-italic">El arte de</span>
-            <span className="block display-italic text-kuro-red">lo oscuro.</span>
-          </h1>
-
-          <p
-            className="mt-8 text-kuro-ivory/80 text-lg md:text-xl max-w-md leading-relaxed opacity-0 translate-y-3 animate-[heroFadeUp_0.7s_cubic-bezier(0.22,1,0.36,1)_0.95s_forwards]"
-            style={{ fontWeight: 300 }}
-          >
-            Sushi contemporáneo en el corazón de Caracas. Un ritual de
-            precisión, fuego y silencio.
-          </p>
-
-          <div className="mt-10 flex opacity-0 translate-y-3 animate-[heroFadeUp_0.7s_cubic-bezier(0.22,1,0.36,1)_1.15s_forwards]">
-            <Link href="/menu" className="btn-outline-cream group">
-              <span>Ver menú</span>
-            </Link>
-          </div>
+      <div className="relative z-10 h-full flex flex-col items-center justify-center px-gutter">
+        {/* Top thin vertical line + eyebrow */}
+        <div className="flex flex-col items-center gap-6 mb-10 md:mb-14">
+          <div className="vert-line origin-top scale-y-0 animate-[heroLine_1s_cubic-bezier(0.22,1,0.36,1)_0.2s_forwards]" />
+          <span className="label-tracked opacity-0 animate-[heroFade_0.9s_ease-out_0.8s_forwards]">
+            Gastronomía Japonesa · Est. 2024
+          </span>
         </div>
 
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 1.6, duration: 0.6 }}
-          className="absolute bottom-6 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 text-kuro-stone"
+        {/* The wordmark */}
+        <h1
+          className="text-display text-kuro-cream text-center opacity-0 translate-y-2 animate-[heroFadeUp_1.1s_cubic-bezier(0.22,1,0.36,1)_0.5s_forwards]"
+          style={{ fontWeight: 300, letterSpacing: "0.04em" }}
         >
-          <span className="text-[12px] md:text-[10px] uppercase tracking-[0.32em]">Desliza</span>
-          <motion.div
-            animate={{ y: [0, 8, 0] }}
-            transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
-          >
-            <ArrowDown size={14} strokeWidth={1.4} aria-hidden="true" />
-          </motion.div>
-        </motion.div>
+          KURO
+        </h1>
+
+        {/* Subtitle */}
+        <div className="mt-6 md:mt-8 flex items-center gap-5 opacity-0 animate-[heroFade_0.9s_ease-out_1.1s_forwards]">
+          <span className="h-px w-10 md:w-16 bg-kuro-graphite" />
+          <span className="text-[11px] md:text-[12px] uppercase tracking-[0.5em] text-kuro-stone">
+            Sushi Restaurant
+          </span>
+          <span className="h-px w-10 md:w-16 bg-kuro-graphite" />
+        </div>
+      </div>
+
+      {/* Scroll indicator */}
+      <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-3 text-kuro-ash opacity-0 animate-[heroFade_0.9s_ease-out_1.4s_forwards]">
+        <span className="text-[10px] uppercase tracking-[0.4em]">Desliza</span>
+        <ArrowDown size={14} strokeWidth={1.2} aria-hidden="true" className="animate-bounce" />
       </div>
     </section>
   );

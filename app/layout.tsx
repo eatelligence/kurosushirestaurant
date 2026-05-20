@@ -95,7 +95,7 @@ const jsonLd = {
     latitude: RESTAURANT.address.coords.lat,
     longitude: RESTAURANT.address.coords.lng,
   },
-  openingHours: ["Mo-Th 12:00-23:00", "Fr-Sa 12:00-01:00", "Su 12:00-22:00"],
+  openingHours: ["Su-We 12:00-22:00", "Th-Sa 12:00-24:00"],
   telephone: RESTAURANT.phone,
   url: "https://kurosushirestaurant.com",
   acceptsReservations: false,

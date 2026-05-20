@@ -18,9 +18,8 @@ export const RESTAURANT = {
     coords: { lat: 10.4990, lng: -66.8420 },
   },
   hours: [
-    { days: "Lunes — Jueves", time: "12:00 — 23:00" },
-    { days: "Viernes — Sábado", time: "12:00 — 01:00" },
-    { days: "Domingo", time: "12:00 — 22:00" },
+    { days: "Domingo — Miércoles", time: "12:00 — 22:00" },
+    { days: "Jueves — Sábado", time: "12:00 — 24:00" },
   ],
   payments: ["Efectivo USD", "Zelle", "Pago Móvil", "Tarjetas"],
   social: {

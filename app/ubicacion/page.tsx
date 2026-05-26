@@ -28,7 +28,7 @@ const schema = z.object({
 
 type FormData = z.infer<typeof schema>;
 
-const WHATSAPP_NUMBER = "582125551234";
+const WHATSAPP_NUMBER = "584126850612";
 
 function buildWhatsAppLink(d: FormData) {
   const lines = [
@@ -75,8 +75,8 @@ export default function UbicacionPage() {
             <span className="display-italic text-kuro-stone">Caracas.</span>
           </h1>
           <p className="mt-6 text-kuro-stone text-base md:text-lg max-w-xl leading-relaxed">
-            3ra Avenida, a una cuadra del parque. Fácil acceso y estacionamiento
-            disponible.
+            CC El Patio, Local 6 — Los Palos Grandes. Fácil acceso y
+            estacionamiento disponible.
           </p>
         </div>
       </section>

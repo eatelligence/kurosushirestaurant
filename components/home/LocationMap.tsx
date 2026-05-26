@@ -42,14 +42,16 @@ export default function LocationMap() {
       const icon = L.divIcon({
         className: "",
         html: `
-          <div style="position:relative;width:44px;height:44px;">
-            <div style="position:absolute;inset:0;border-radius:50%;background:rgba(245,242,236,0.18);animation:kuropulse 2.4s ease-out infinite;"></div>
-            <div style="position:absolute;inset:7px;border-radius:50%;background:#F5F2EC;display:flex;align-items:center;justify-content:center;color:#0A0A0A;font-family:Georgia,serif;font-style:italic;font-weight:600;font-size:16px;box-shadow:0 6px 20px rgba(0,0,0,0.6);border:1px solid rgba(10,10,10,0.2);">K</div>
+          <div style="position:relative;width:48px;height:48px;">
+            <div style="position:absolute;inset:0;border-radius:50%;background:rgba(245,242,236,0.2);animation:kuropulse 2.4s ease-out infinite;"></div>
+            <div style="position:absolute;inset:6px;border-radius:50%;background:#0A0A0A;overflow:hidden;box-shadow:0 6px 20px rgba(0,0,0,0.6);border:1px solid rgba(245,242,236,0.3);display:flex;align-items:center;justify-content:center;">
+              <img src="/logopesce.jpg" alt="Kuro" style="width:78%;height:auto;display:block;" />
+            </div>
           </div>
           <style>@keyframes kuropulse{0%{transform:scale(0.6);opacity:0.7}100%{transform:scale(1.7);opacity:0}}</style>
         `,
-        iconSize: [44, 44],
-        iconAnchor: [22, 22],
+        iconSize: [48, 48],
+        iconAnchor: [24, 24],
       });
 
       L.marker([lat, lng], { icon }).addTo(map).bindPopup(

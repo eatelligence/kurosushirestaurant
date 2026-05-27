@@ -1,9 +1,7 @@
-import { RESTAURANT } from "@/lib/constants";
-
-export function WhatsAppButton() {
+export function WhatsAppButton({ href }: { href: string }) {
   return (
     <a
-      href={RESTAURANT.whatsapp}
+      href={href}
       target="_blank"
       rel="noreferrer"
       aria-label="Contactar por WhatsApp"

@@ -3,19 +3,14 @@
 import Image from "next/image";
 import Link from "next/link";
 import { m as motion } from "framer-motion";
-import { featuredDishes, igImages } from "@/lib/constants";
+import type { GalleryPhoto } from "@/lib/data/types";
 
-// Mix of curated dish photos + IG snapshots, all-in for visual color.
-const gallery = [
-  { src: featuredDishes[0].image, alt: featuredDishes[0].name, aspect: "aspect-[4/5]" },
-  { src: featuredDishes[1].image, alt: featuredDishes[1].name, aspect: "aspect-square" },
-  { src: featuredDishes[2].image, alt: featuredDishes[2].name, aspect: "aspect-[4/5]" },
-  { src: featuredDishes[3].image, alt: featuredDishes[3].name, aspect: "aspect-square" },
-  { src: igImages[4], alt: "Plato Kuro", aspect: "aspect-[4/5]" },
-  { src: igImages[5], alt: "Plato Kuro", aspect: "aspect-square" },
-];
+const ASPECTS = ["aspect-[4/5]", "aspect-square", "aspect-[4/5]", "aspect-square", "aspect-[4/5]", "aspect-square"] as const;
 
-export function DishesStrip() {
+export function DishesStrip({ photos }: { photos: GalleryPhoto[] }) {
+  const gallery = photos.slice(0, 6);
+  if (gallery.length === 0) return null;
+
   return (
     <section className="py-section bg-kuro-black border-t border-kuro-smoke/40">
       <div className="max-w-[1280px] mx-auto px-gutter">
@@ -52,16 +47,16 @@ export function DishesStrip() {
         <div className="grid grid-cols-2 md:grid-cols-3 gap-3 md:gap-5">
           {gallery.map((img, i) => (
             <motion.figure
-              key={`${img.src}-${i}`}
+              key={img.id}
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-80px" }}
               transition={{ duration: 0.7, delay: (i % 3) * 0.08 }}
-              className={`relative overflow-hidden bg-kuro-charcoal ${img.aspect}`}
+              className={`relative overflow-hidden bg-kuro-charcoal ${ASPECTS[i % ASPECTS.length]}`}
             >
               <Image
-                src={img.src}
-                alt={img.alt}
+                src={img.url}
+                alt={img.alt ?? "Kuro Sushi"}
                 fill
                 sizes="(min-width: 1024px) 33vw, 50vw"
                 className="object-cover transition-transform duration-[1200ms] ease-out hover:scale-[1.04]"

@@ -2,8 +2,8 @@
 
 import dynamic from "next/dynamic";
 import { MapPin, Clock, Phone } from "lucide-react";
-import { RESTAURANT } from "@/lib/constants";
 import { m as motion } from "framer-motion";
+import type { Settings, HoursGroup } from "@/lib/data/types";
 
 const LocationMap = dynamic(() => import("./LocationMap"), {
   ssr: false,
@@ -16,7 +16,13 @@ const LocationMap = dynamic(() => import("./LocationMap"), {
   ),
 });
 
-export function Location() {
+export function Location({
+  settings,
+  hours,
+}: {
+  settings: Settings;
+  hours: HoursGroup[];
+}) {
   return (
     <section id="ubicacion" className="py-section bg-kuro-black">
       <div className="max-w-[1280px] mx-auto px-gutter">
@@ -49,7 +55,12 @@ export function Location() {
             transition={{ duration: 1 }}
             className="relative min-h-[440px] lg:min-h-[520px] order-2 lg:order-1"
           >
-            <LocationMap />
+            <LocationMap
+              lat={settings.address.coords.lat}
+              lng={settings.address.coords.lng}
+              street={settings.address.street}
+              name={settings.name}
+            />
           </motion.div>
 
           <div className="order-1 lg:order-2 space-y-8">
@@ -59,9 +70,9 @@ export function Location() {
                 title: "Dirección",
                 body: (
                   <>
-                    {RESTAURANT.address.street}
+                    {settings.address.street}
                     <br />
-                    {RESTAURANT.address.city}
+                    {settings.address.city}
                   </>
                 ),
               },
@@ -70,7 +81,7 @@ export function Location() {
                 title: "Horarios",
                 body: (
                   <ul className="space-y-1.5">
-                    {RESTAURANT.hours.map((h) => (
+                    {hours.map((h) => (
                       <li key={h.days} className="flex justify-between gap-6">
                         <span className="text-kuro-ash">{h.days}</span>
                         <span>{h.time}</span>
@@ -84,12 +95,12 @@ export function Location() {
                 title: "Contacto",
                 body: (
                   <>
-                    <a href={RESTAURANT.phoneHref} className="hover:text-kuro-cream transition-colors">
-                      {RESTAURANT.phone}
+                    <a href={settings.phoneHref} className="hover:text-kuro-cream transition-colors">
+                      {settings.phone}
                     </a>
                     <br />
                     <a
-                      href={RESTAURANT.whatsapp}
+                      href={settings.whatsappUrl}
                       target="_blank"
                       rel="noreferrer"
                       className="text-kuro-stone hover:text-kuro-cream transition-colors"

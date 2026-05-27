@@ -1,8 +1,15 @@
 import Link from "next/link";
 import { Instagram, MessageCircle, Music2 } from "lucide-react";
-import { RESTAURANT, navLinks } from "@/lib/constants";
+import { navLinks } from "@/lib/constants";
+import type { Settings, HoursGroup } from "@/lib/data/types";
 
-export function Footer() {
+export function Footer({
+  settings,
+  hours,
+}: {
+  settings: Settings;
+  hours: HoursGroup[];
+}) {
   return (
     <footer className="bg-black border-t border-kuro-smoke/60 relative overflow-hidden">
       <div className="max-w-[1480px] mx-auto px-gutter pt-20 pb-10">
@@ -46,7 +53,7 @@ export function Footer() {
           <div className="md:col-span-3">
             <h2 className="label-tracked-stone mb-5">Horarios</h2>
             <ul className="space-y-3 text-sm text-kuro-ivory">
-              {RESTAURANT.hours.map((h) => (
+              {hours.map((h) => (
                 <li key={h.days} className="flex flex-col">
                   <span className="text-kuro-ash text-[10px] uppercase tracking-[0.28em]">
                     {h.days}
@@ -61,45 +68,49 @@ export function Footer() {
             <h2 className="label-tracked-stone mb-5">Contacto</h2>
             <ul className="space-y-3 text-sm text-kuro-ivory">
               <li>
-                <a href={RESTAURANT.phoneHref} className="hover:text-kuro-cream transition-colors">
-                  {RESTAURANT.phone}
+                <a href={settings.phoneHref} className="hover:text-kuro-cream transition-colors">
+                  {settings.phone}
                 </a>
               </li>
               <li>
                 <a
-                  href={`mailto:${RESTAURANT.email}`}
+                  href={`mailto:${settings.email}`}
                   className="hover:text-kuro-cream transition-colors break-all"
                 >
-                  {RESTAURANT.email}
+                  {settings.email}
                 </a>
               </li>
               <li className="text-kuro-ash leading-relaxed pt-2">
-                {RESTAURANT.address.street}<br />
-                {RESTAURANT.address.city}
+                {settings.address.street}<br />
+                {settings.address.city}
               </li>
             </ul>
 
             <div className="mt-6 flex items-center gap-4">
+              {settings.social.instagram && (
+                <a
+                  href={settings.social.instagram}
+                  target="_blank"
+                  rel="noreferrer"
+                  aria-label="Instagram"
+                  className="w-10 h-10 border border-kuro-smoke flex items-center justify-center text-kuro-stone hover:text-kuro-cream hover:border-kuro-graphite transition-colors"
+                >
+                  <Instagram size={16} strokeWidth={1.4} />
+                </a>
+              )}
+              {settings.social.tiktok && (
+                <a
+                  href={settings.social.tiktok}
+                  target="_blank"
+                  rel="noreferrer"
+                  aria-label="TikTok"
+                  className="w-10 h-10 border border-kuro-smoke flex items-center justify-center text-kuro-stone hover:text-kuro-cream hover:border-kuro-graphite transition-colors"
+                >
+                  <Music2 size={16} strokeWidth={1.4} />
+                </a>
+              )}
               <a
-                href={RESTAURANT.social.instagram}
-                target="_blank"
-                rel="noreferrer"
-                aria-label="Instagram"
-                className="w-10 h-10 border border-kuro-smoke flex items-center justify-center text-kuro-stone hover:text-kuro-cream hover:border-kuro-graphite transition-colors"
-              >
-                <Instagram size={16} strokeWidth={1.4} />
-              </a>
-              <a
-                href={RESTAURANT.social.tiktok}
-                target="_blank"
-                rel="noreferrer"
-                aria-label="TikTok"
-                className="w-10 h-10 border border-kuro-smoke flex items-center justify-center text-kuro-stone hover:text-kuro-cream hover:border-kuro-graphite transition-colors"
-              >
-                <Music2 size={16} strokeWidth={1.4} />
-              </a>
-              <a
-                href={RESTAURANT.whatsapp}
+                href={settings.whatsappUrl}
                 target="_blank"
                 rel="noreferrer"
                 aria-label="WhatsApp"

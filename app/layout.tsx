@@ -5,7 +5,10 @@ import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
 import { WhatsAppButton } from "@/components/layout/WhatsAppButton";
 import { MotionProvider } from "@/components/MotionProvider";
-import { RESTAURANT } from "@/lib/constants";
+import { SiteBanner } from "@/components/public/SiteBanner";
+import { getSettings } from "@/lib/data/settings";
+import { getHoursGrouped, getHoursRaw } from "@/lib/data/hours";
+import { Toaster } from "sonner";
 
 const cormorant = Cormorant_Garamond({
   subsets: ["latin"],
@@ -45,8 +48,7 @@ export const metadata: Metadata = {
     url: "https://kurosushirestaurant.com",
     siteName: "Kuro Sushi Restaurant",
     title: "Kuro Sushi Restaurant | Los Palos Grandes, Caracas",
-    description:
-      "Cocina japonesa contemporánea en Los Palos Grandes, Caracas.",
+    description: "Cocina japonesa contemporánea en Los Palos Grandes, Caracas.",
     images: [
       {
         url: "https://images.unsplash.com/photo-1553621042-f6e147245754?w=1200&q=85",
@@ -63,9 +65,7 @@ export const metadata: Metadata = {
   },
   robots: { index: true, follow: true },
   icons: {
-    icon: [
-      { url: "/logopesce.jpg", type: "image/jpeg" },
-    ],
+    icon: [{ url: "/logopesce.jpg", type: "image/jpeg" }],
     apple: [{ url: "/logopesce.jpg" }],
   },
 };
@@ -76,37 +76,49 @@ export const viewport: Viewport = {
   initialScale: 1,
 };
 
-const jsonLd = {
-  "@context": "https://schema.org",
-  "@type": "Restaurant",
-  name: "Kuro Sushi Restaurant",
-  servesCuisine: "Japanese",
-  priceRange: "$$",
-  image: [
-    "https://images.unsplash.com/photo-1553621042-f6e147245754?w=1200&q=85",
-  ],
-  address: {
-    "@type": "PostalAddress",
-    streetAddress: RESTAURANT.address.street,
-    addressLocality: "Caracas",
-    addressCountry: "VE",
-  },
-  geo: {
-    "@type": "GeoCoordinates",
-    latitude: RESTAURANT.address.coords.lat,
-    longitude: RESTAURANT.address.coords.lng,
-  },
-  openingHours: ["Su-We 12:00-22:00", "Th-Sa 12:00-24:00"],
-  telephone: RESTAURANT.phone,
-  url: "https://kurosushirestaurant.com",
-  acceptsReservations: false,
-};
+function dayCode(d: number) {
+  return ["Su", "Mo", "Tu", "We", "Th", "Fr", "Sa"][d];
+}
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
+  const [settings, hoursGrouped, hoursRaw] = await Promise.all([
+    getSettings(),
+    getHoursGrouped(),
+    getHoursRaw(),
+  ]);
+
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "Restaurant",
+    name: settings.name,
+    servesCuisine: "Japanese",
+    priceRange: "$$",
+    image: [
+      "https://images.unsplash.com/photo-1553621042-f6e147245754?w=1200&q=85",
+    ],
+    address: {
+      "@type": "PostalAddress",
+      streetAddress: settings.address.street,
+      addressLocality: "Caracas",
+      addressCountry: "VE",
+    },
+    geo: {
+      "@type": "GeoCoordinates",
+      latitude: settings.address.coords.lat,
+      longitude: settings.address.coords.lng,
+    },
+    openingHours: hoursRaw
+      .filter((h) => !h.closed && h.open && h.close)
+      .map((h) => `${dayCode(h.day)} ${h.open}-${h.close === "00:00:00" ? "24:00" : h.close?.slice(0, 5)}`),
+    telephone: settings.phone,
+    url: "https://kurosushirestaurant.com",
+    acceptsReservations: false,
+  };
+
   return (
     <html lang="es-VE" className={`${cormorant.variable} ${dmSans.variable}`}>
       <head>
@@ -120,11 +132,13 @@ export default function RootLayout({
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
         <MotionProvider>
-          <Navbar />
+          <SiteBanner banner={settings.banner} />
+          <Navbar settings={settings} />
           <main>{children}</main>
-          <Footer />
-          <WhatsAppButton />
+          <Footer settings={settings} hours={hoursGrouped} />
+          <WhatsAppButton href={settings.whatsappUrl} />
         </MotionProvider>
+        <Toaster theme="dark" position="bottom-right" />
       </body>
     </html>
   );

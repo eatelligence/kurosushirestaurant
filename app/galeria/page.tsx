@@ -1,6 +1,8 @@
 import Image from "next/image";
 import type { Metadata } from "next";
-import { featuredDishes, igImages } from "@/lib/constants";
+import { getGallery } from "@/lib/data/gallery";
+
+export const revalidate = 60;
 
 export const metadata: Metadata = {
   title: "Galería",
@@ -8,22 +10,24 @@ export const metadata: Metadata = {
     "Galería visual de Kuro Sushi: piezas, rolls y atmósfera del restaurante.",
 };
 
-const photos = [
-  { src: featuredDishes[0].image, alt: featuredDishes[0].name, span: "col-span-2 row-span-2 aspect-square" },
-  { src: featuredDishes[1].image, alt: featuredDishes[1].name, span: "aspect-square" },
-  { src: featuredDishes[2].image, alt: featuredDishes[2].name, span: "aspect-square" },
-  { src: featuredDishes[3].image, alt: featuredDishes[3].name, span: "col-span-2 aspect-[2/1]" },
-  { src: igImages[0], alt: "Plato Kuro", span: "aspect-square" },
-  { src: igImages[1], alt: "Plato Kuro", span: "aspect-square" },
-  { src: igImages[2], alt: "Plato Kuro", span: "row-span-2 aspect-[1/2]" },
-  { src: igImages[3], alt: "Plato Kuro", span: "aspect-square" },
-  { src: igImages[4], alt: "Plato Kuro", span: "aspect-square" },
-  { src: igImages[5], alt: "Plato Kuro", span: "col-span-2 aspect-[2/1]" },
-  { src: igImages[6], alt: "Plato Kuro", span: "aspect-square" },
-  { src: igImages[7], alt: "Plato Kuro", span: "aspect-square" },
+const SPANS = [
+  "col-span-2 row-span-2 aspect-square",
+  "aspect-square",
+  "aspect-square",
+  "col-span-2 aspect-[2/1]",
+  "aspect-square",
+  "aspect-square",
+  "row-span-2 aspect-[1/2]",
+  "aspect-square",
+  "aspect-square",
+  "col-span-2 aspect-[2/1]",
+  "aspect-square",
+  "aspect-square",
 ];
 
-export default function GaleriaPage() {
+export default async function GaleriaPage() {
+  const photos = await getGallery();
+
   return (
     <>
       <section className="pt-36 md:pt-44 pb-12 bg-kuro-black">
@@ -48,12 +52,12 @@ export default function GaleriaPage() {
           <div className="grid grid-cols-2 md:grid-cols-4 gap-2 md:gap-3 auto-rows-auto">
             {photos.map((p, i) => (
               <figure
-                key={`${p.src}-${i}`}
-                className={`relative overflow-hidden bg-kuro-charcoal ${p.span}`}
+                key={p.id}
+                className={`relative overflow-hidden bg-kuro-charcoal ${SPANS[i % SPANS.length]}`}
               >
                 <Image
-                  src={p.src}
-                  alt={p.alt}
+                  src={p.url}
+                  alt={p.alt ?? "Kuro Sushi"}
                   fill
                   sizes="(min-width: 1024px) 25vw, 50vw"
                   className="object-cover transition-transform duration-[1200ms] ease-out hover:scale-[1.04]"

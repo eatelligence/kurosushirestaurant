@@ -4,12 +4,13 @@ import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 import { AnimatePresence, m as motion } from "framer-motion";
 import { Menu, X, Instagram } from "lucide-react";
-import { navLinks, RESTAURANT } from "@/lib/constants";
+import { navLinks } from "@/lib/constants";
+import type { Settings } from "@/lib/data/types";
 
 const FOCUSABLE =
   'a[href], button:not([disabled]), [tabindex]:not([tabindex="-1"])';
 
-export function Navbar() {
+export function Navbar({ settings }: { settings: Settings }) {
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
   const triggerRef = useRef<HTMLButtonElement>(null);
@@ -167,20 +168,22 @@ export function Navbar() {
             </nav>
 
             <div className="px-gutter pb-10 border-t border-kuro-smoke/60 pt-6 flex items-center justify-between flex-wrap gap-4">
+              {settings.social.instagram && (
+                <a
+                  href={settings.social.instagram}
+                  target="_blank"
+                  rel="noreferrer"
+                  aria-label={`Instagram ${settings.social.instagramHandle ?? ""}`}
+                  className="flex items-center gap-2 text-kuro-stone hover:text-kuro-cream transition-colors min-h-[44px]"
+                >
+                  <Instagram size={16} strokeWidth={1.4} aria-hidden="true" />
+                  <span className="text-[11px] uppercase tracking-[0.28em]">
+                    {settings.social.instagramHandle}
+                  </span>
+                </a>
+              )}
               <a
-                href={RESTAURANT.social.instagram}
-                target="_blank"
-                rel="noreferrer"
-                aria-label={`Instagram ${RESTAURANT.social.instagramHandle}`}
-                className="flex items-center gap-2 text-kuro-stone hover:text-kuro-cream transition-colors min-h-[44px]"
-              >
-                <Instagram size={16} strokeWidth={1.4} aria-hidden="true" />
-                <span className="text-[11px] uppercase tracking-[0.28em]">
-                  {RESTAURANT.social.instagramHandle}
-                </span>
-              </a>
-              <a
-                href={RESTAURANT.whatsapp}
+                href={settings.whatsappUrl}
                 target="_blank"
                 rel="noreferrer"
                 className="text-[11px] uppercase tracking-[0.28em] text-kuro-stone hover:text-kuro-cream min-h-[44px] inline-flex items-center transition-colors"

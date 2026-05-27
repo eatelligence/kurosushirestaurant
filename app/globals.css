@@ -114,6 +114,90 @@
     background: linear-gradient(to right, transparent, rgba(176,174,176,0.35), transparent);
   }
 
+  .admin-input,
+  .admin-textarea,
+  .admin-select {
+    width: 100%;
+    background: transparent;
+    border: 1px solid #2A2A2A;
+    color: #F5F2EC;
+    padding: 12px 14px;
+    min-height: 44px;
+    font-family: var(--font-sans);
+    font-size: 14px;
+    font-weight: 300;
+    outline: none;
+    transition: border-color 0.2s;
+  }
+  .admin-input:focus,
+  .admin-textarea:focus,
+  .admin-select:focus {
+    border-color: #8A8A8A;
+  }
+  .admin-input::placeholder,
+  .admin-textarea::placeholder {
+    color: #5A5A5A;
+  }
+  .admin-textarea { resize: vertical; }
+
+  .admin-btn-primary {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.6rem;
+    padding: 0.75rem 1.4rem;
+    background: #F5F2EC;
+    color: #0A0A0A;
+    font-size: 11px;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    font-weight: 500;
+    border: 1px solid #F5F2EC;
+    transition: background 0.2s, color 0.2s, border-color 0.2s;
+    cursor: pointer;
+    min-height: 44px;
+  }
+  .admin-btn-primary:hover { background: #E8E6E2; border-color: #E8E6E2; }
+  .admin-btn-primary:disabled { opacity: 0.5; cursor: not-allowed; }
+
+  .admin-btn-ghost {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.6rem;
+    padding: 0.75rem 1.4rem;
+    background: transparent;
+    color: #B0AEB0;
+    font-size: 11px;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    font-weight: 500;
+    border: 1px solid #2A2A2A;
+    transition: color 0.2s, border-color 0.2s;
+    cursor: pointer;
+    min-height: 44px;
+  }
+  .admin-btn-ghost:hover { color: #F5F2EC; border-color: #3A3A3A; }
+
+  .admin-btn-danger {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.6rem;
+    padding: 0.75rem 1.4rem;
+    background: transparent;
+    color: #B0AEB0;
+    font-size: 11px;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    font-weight: 500;
+    border: 1px solid #3A3A3A;
+    transition: background 0.2s, color 0.2s;
+    cursor: pointer;
+    min-height: 44px;
+  }
+  .admin-btn-danger:hover { background: #2A2A2A; color: #F5F2EC; }
+
   .btn-outline-cream {
     display: inline-flex;
     align-items: center;

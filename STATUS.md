@@ -1,6 +1,6 @@
 # Kuro Sushi — Project Status
 
-Last updated: 2026-05-27
+Last updated: 2026-09-01
 
 ## Done
 
@@ -28,11 +28,29 @@ Black / white / grey monochrome only. **No red, no gold.** Color comes only from
 - `<SiteBanner />` strip above Navbar when `banner_active=true`.
 - JSON-LD `Restaurant` schema generated dynamically from DB.
 
+### Fotografía real y SEO (2026-09-01)
+El cliente entregó 59 fotos profesionales (`SELECCION WEB - KURO/`, ~1.1 GB, ignorada por git).
+- Convertidas a webp 2000px/q80 → 14 MB totales. Set curado de 27 en `_WEB-OPTIMIZADAS/`,
+  numerado según el orden sugerido de galería (las 6 primeras van marcadas `featured`, que es
+  lo que `DishesStrip` muestra en la home; sin destacadas cae a las 6 primeras por `sort`).
+- Reemplazadas las 3 imágenes Unsplash hardcodeadas por assets locales:
+  `public/images/{salon-mesa.webp, atmosfera.webp, og-cover.jpg}`.
+- Ya no queda ninguna referencia a `images.unsplash.com` en el código.
+- Iconos: `public/icon-{32,180,512}.png` generados desde el logo del pez.
+  Eliminado `public/favicon.svg`, que era la "K" roja de la marca anterior.
+- Añadidos `app/sitemap.ts` y `app/robots.ts` (el segundo excluye `/admin`).
+- `preconnect` apunta ahora al Storage de Supabase en vez de a Unsplash.
+
+**Nota de dirección de arte**: las fotos 37–55 están sobre granito cobrizo con luz ámbar y
+rompen el monocromo. Quedaron fuera del set curado.
+
 ### CMS — Supabase-backed admin (commit `f70c568`)
 All editable content moved from `lib/constants.ts` to Supabase. Static `lib/constants.ts` now holds only `navLinks`.
 
 **Infra**
-- Supabase project `akskncluulypikjywzml` (region: South America / São Paulo, free tier)
+- Supabase project `akskncluulypikjywzml`, org `imiliswmimdyrrcxegdl` (region: **ap-southeast-1 / Singapore**, free tier)
+  - ⚠️ Free tier **auto-pausa** el proyecto tras inactividad. Cuando pasa a `INACTIVE` el DB deja de
+    responder: hay que hacer *Restore* desde el dashboard. Ya ocurrió una vez (2026-09-01).
 - Schema: `restaurant_settings` (single row), `opening_hours` (7 rows), `menu_sections`, `menu_items`, `gallery_photos`, `audit_log`
 - RLS: public SELECT, authenticated INSERT/UPDATE/DELETE
 - Storage bucket `kuro-photos` (public read, authenticated write)
@@ -72,9 +90,17 @@ All editable content moved from `lib/constants.ts` to Supabase. Static `lib/cons
 
 ### Still placeholder (now editable from /admin)
 - Social handles `@kurosushicaracas` (Instagram, TikTok)
-- All dish photos and gallery photos are Unsplash stock — client to upload real photography via `/admin/galeria`
+- **Galería**: el DB sigue con stock de Unsplash. Falta subir las 27 fotos de
+  `SELECCION WEB - KURO/_WEB-OPTIMIZADAS/`, en orden numérico, marcando las 6 primeras
+  como destacadas, y borrar las 12 de stock de Unsplash.
 - Menu items, descriptions and prices were seeded as demo — client to edit via `/admin/menu`
-- Logo `public/logopesce.jpg` is a JPG using `mix-blend-screen`. Replace with transparent SVG/PNG when client provides one.
+- Logo `public/logopesce.jpg` sigue siendo un JPG con `mix-blend-screen`. Los iconos PNG ya
+  están generados, pero un SVG con transparencia del cliente sería mejor.
+
+### Robustez (no implementado, decidido posponer)
+- Los getters de `lib/data/*` hacen `throw` si Supabase no responde, así que **un deploy con el
+  DB pausado falla en build** en vez de servir contenido stale. Un fallback degradado evitaría
+  que una pausa del free tier tumbe el despliegue.
 
 ### Post-deploy verification
 - Confirm CMS save → public update propagation under 10s (test by changing a price).

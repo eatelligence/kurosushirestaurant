@@ -32,8 +32,8 @@ export default function NosotrosPage() {
           <div className="lg:col-span-5">
             <div className="relative aspect-[4/5] overflow-hidden">
               <Image
-                src="https://images.unsplash.com/photo-1607301406259-dfb186e15de8?w=1400&q=85"
-                alt="Chef de Kuro Sushi"
+                src="/images/salon-mesa.webp"
+                alt="Mesa comunal del salón de Kuro Sushi"
                 fill
                 sizes="(min-width: 1024px) 40vw, 100vw"
                 className="object-cover"
@@ -88,8 +88,8 @@ export default function NosotrosPage() {
 
       <section className="relative h-[60svh] min-h-[420px] w-full overflow-hidden bg-kuro-black">
         <Image
-          src="https://images.unsplash.com/photo-1551183053-bf91a1d81141?w=2400&q=85"
-          alt="Atmósfera Kuro"
+          src="/images/atmosfera.webp"
+          alt="Salón de Kuro Sushi con muro de piedra retroiluminado"
           fill
           sizes="100vw"
           className="object-cover"

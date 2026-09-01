@@ -51,10 +51,10 @@ export const metadata: Metadata = {
     description: "Cocina japonesa contemporánea en Los Palos Grandes, Caracas.",
     images: [
       {
-        url: "https://images.unsplash.com/photo-1553621042-f6e147245754?w=1200&q=85",
+        url: "/images/og-cover.jpg",
         width: 1200,
         height: 630,
-        alt: "Kuro Sushi Restaurant",
+        alt: "Plato de autor en Kuro Sushi Restaurant",
       },
     ],
   },
@@ -62,11 +62,15 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Kuro Sushi Restaurant",
     description: "Gastronomía japonesa contemporánea en Los Palos Grandes, Caracas.",
+    images: ["/images/og-cover.jpg"],
   },
   robots: { index: true, follow: true },
   icons: {
-    icon: [{ url: "/logopesce.jpg", type: "image/jpeg" }],
-    apple: [{ url: "/logopesce.jpg" }],
+    icon: [
+      { url: "/icon-32.png", sizes: "32x32", type: "image/png" },
+      { url: "/icon-512.png", sizes: "512x512", type: "image/png" },
+    ],
+    apple: [{ url: "/icon-180.png", sizes: "180x180" }],
   },
 };
 
@@ -97,9 +101,7 @@ export default async function RootLayout({
     name: settings.name,
     servesCuisine: "Japanese",
     priceRange: "$$",
-    image: [
-      "https://images.unsplash.com/photo-1553621042-f6e147245754?w=1200&q=85",
-    ],
+    image: ["https://kurosushirestaurant.com/images/og-cover.jpg"],
     address: {
       "@type": "PostalAddress",
       streetAddress: settings.address.street,
@@ -122,8 +124,12 @@ export default async function RootLayout({
   return (
     <html lang="es-VE" className={`${cormorant.variable} ${dmSans.variable}`}>
       <head>
-        <link rel="preconnect" href="https://images.unsplash.com" crossOrigin="anonymous" />
-        <link rel="dns-prefetch" href="https://images.unsplash.com" />
+        <link
+          rel="preconnect"
+          href="https://akskncluulypikjywzml.supabase.co"
+          crossOrigin="anonymous"
+        />
+        <link rel="dns-prefetch" href="https://akskncluulypikjywzml.supabase.co" />
         <link rel="preconnect" href="https://a.basemaps.cartocdn.com" crossOrigin="anonymous" />
       </head>
       <body>

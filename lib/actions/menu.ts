@@ -22,8 +22,15 @@ export async function createSection(input: unknown) {
   const parsed = SectionSchema.safeParse(input);
   if (!parsed.success) return { ok: false as const, error: parsed.error.issues[0].message };
   const supabase = await createClient();
-  const { count } = await supabase.from("menu_sections").select("id", { count: "exact", head: true });
-  const { error } = await supabase.from("menu_sections").insert({ ...parsed.data, sort: count ?? 0 });
+  const { data: last } = await supabase
+    .from("menu_sections")
+    .select("sort")
+    .order("sort", { ascending: false })
+    .limit(1)
+    .maybeSingle();
+  const { error } = await supabase
+    .from("menu_sections")
+    .insert({ ...parsed.data, sort: (last?.sort ?? -1) + 1 });
   if (error) return { ok: false as const, error: error.message };
   bump();
   return { ok: true as const };
@@ -74,11 +81,16 @@ export async function createItem(input: unknown) {
   const parsed = ItemSchema.safeParse(input);
   if (!parsed.success) return { ok: false as const, error: parsed.error.issues[0].message };
   const supabase = await createClient();
-  const { count } = await supabase
+  const { data: last } = await supabase
     .from("menu_items")
-    .select("id", { count: "exact", head: true })
-    .eq("section_id", parsed.data.section_id);
-  const { error } = await supabase.from("menu_items").insert({ ...parsed.data, sort: count ?? 0 });
+    .select("sort")
+    .eq("section_id", parsed.data.section_id)
+    .order("sort", { ascending: false })
+    .limit(1)
+    .maybeSingle();
+  const { error } = await supabase
+    .from("menu_items")
+    .insert({ ...parsed.data, sort: (last?.sort ?? -1) + 1 });
   if (error) return { ok: false as const, error: error.message };
   bump();
   return { ok: true as const };

@@ -10,7 +10,7 @@ function hhmm(t: string | null): string | null {
   if (!t) return null;
   // Supabase returns time as "HH:MM:SS"
   const [h, m] = t.split(":");
-  return `${h}:${m === "00" ? "00" : m}`;
+  return `${h}:${m}`;
 }
 
 function fmtRange(open: string | null, close: string | null) {

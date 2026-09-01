@@ -23,10 +23,17 @@ export async function insertPhoto(input: unknown) {
   const parsed = InsertSchema.safeParse(input);
   if (!parsed.success) return { ok: false as const, error: parsed.error.issues[0].message };
   const supabase = await createClient();
-  const { count } = await supabase.from("gallery_photos").select("id", { count: "exact", head: true });
+  // sort = max(sort) + 1, non count(): dopo una cancellazione il conteggio
+  // collide con un sort gia' esistente e l'ordine diventa non deterministico.
+  const { data: last } = await supabase
+    .from("gallery_photos")
+    .select("sort")
+    .order("sort", { ascending: false })
+    .limit(1)
+    .maybeSingle();
   const { error } = await supabase
     .from("gallery_photos")
-    .insert({ ...parsed.data, sort: count ?? 0 });
+    .insert({ ...parsed.data, sort: (last?.sort ?? -1) + 1 });
   if (error) return { ok: false as const, error: error.message };
   bump();
   return { ok: true as const };

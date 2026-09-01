@@ -273,7 +273,7 @@
 .leaflet-container {
   background: #0A0A0A !important;
   font-family: var(--font-sans) !important;
-  filter: grayscale(100%) brightness(0.85);
+  filter: grayscale(100%) brightness(0.6);
 }
 .leaflet-control-attribution {
   background: rgba(10,10,10,0.7) !important;

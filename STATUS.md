@@ -44,6 +44,25 @@ El cliente entregó 59 fotos profesionales (`SELECCION WEB - KURO/`, ~1.1 GB, ig
 **Nota de dirección de arte**: las fotos 37–55 están sobre granito cobrizo con luz ámbar y
 rompen el monocromo. Quedaron fuera del set curado.
 
+### Mapa: fuera de CARTO (2026-09-01)
+CARTO empezó a exigir API key para sus basemaps. No bloquea la petición: devuelve
+`HTTP 200` con la tile **marcada con la marca de agua "API KEY REQUIRED"**, que salía
+impresa sobre el mapa en `/ubicacion`.
+
+- Cambiado a **Esri Canvas Dark Gray** (base + capa de etiquetas). Sin clave, gris neutro
+  que encaja mejor con el negro del sitio que el azulado de CARTO.
+- Las tiles de Esri llegan hasta **z16**; más allá sirve un placeholder claro
+  *"Map data not yet available"*. Resuelto con `maxNativeZoom: 16` + `maxZoom: 19`,
+  así Leaflet reescala en vez de pedir tiles inexistentes.
+- `filter: brightness()` recalibrado de `0.85` a `0.6`: Esri parte más claro que CARTO.
+- El CSS de Leaflet ya no se inyecta desde `unpkg.com` en runtime; se importa del
+  paquete npm y viaja en el bundle (verificado: 69 clases leaflet en el CSS generado).
+- `preconnect` apunta ahora a `server.arcgisonline.com`.
+
+**A tener en cuenta**: los basemaps de Esri sin clave funcionan y son de uso extendido,
+pero sus términos para uso comercial son ambiguos. Si algún día importa tener una
+licencia explícita, la alternativa limpia es una API key gratuita de CARTO.
+
 ### CMS — Supabase-backed admin (commit `f70c568`)
 All editable content moved from `lib/constants.ts` to Supabase. Static `lib/constants.ts` now holds only `navLinks`.
 
@@ -76,6 +95,25 @@ All editable content moved from `lib/constants.ts` to Supabase. Static `lib/cons
 **Deps added**: `@supabase/{supabase-js,ssr}`, `@dnd-kit/{core,sortable}`, `browser-image-compression`, `sonner`; dev: `tsx`, `dotenv`.
 
 ## Open / to-do
+
+### 🚨 Bloqueantes de lanzamiento (2026-09-01)
+
+**El sitio no es accesible públicamente.** Verificado hoy:
+
+1. **El dominio no apunta a Vercel.** `kurosushirestaurant.com` resuelve a Squarespace
+   (`198.49.23.144/145`, `www` → CNAME `ext-sq.squarespace.com`) y devuelve
+   *"Squarespace — Website Expired"*. El proyecto de Vercel sólo tiene los dominios
+   `*.vercel.app`; el dominio del cliente nunca se conectó.
+   → Vercel → Settings → Domains → añadir `kurosushirestaurant.com` + `www`,
+     y mover los DNS desde Squarespace en el registrador.
+
+2. **Deployment Protection activa en producción.** Las tres URL `*.vercel.app`
+   responden con `<title>Login – Vercel</title>` en vez del sitio. Aunque se conecte
+   el dominio, el acceso seguirá detrás del login de Vercel hasta desactivarla.
+   → Vercel → Settings → Deployment Protection.
+
+Hasta que ambos se resuelvan, no existe ninguna URL pública donde un cliente pueda
+ver el sitio, y el trabajo desplegado no lo ve nadie.
 
 ### Security (do soon)
 - **Rotate `SUPABASE_SERVICE_ROLE_KEY`** — Supabase Dashboard → Settings → API → Reset → update on Vercel. The current key was pasted in a chat transcript.

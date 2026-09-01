@@ -1,6 +1,9 @@
 "use client";
 
 import { useEffect, useRef } from "react";
+// Il CSS viaggia nel bundle: caricarlo da un CDN a runtime significa mappa
+// senza stili quando quel CDN e' lento o bloccato.
+import "leaflet/dist/leaflet.css";
 
 export default function LocationMap({
   lat,
@@ -20,13 +23,6 @@ export default function LocationMap({
     let cancelled = false;
     (async () => {
       const L = (await import("leaflet")).default;
-      if (!document.getElementById("leaflet-css")) {
-        const link = document.createElement("link");
-        link.id = "leaflet-css";
-        link.rel = "stylesheet";
-        link.href = "https://unpkg.com/leaflet@1.9.4/dist/leaflet.css";
-        document.head.appendChild(link);
-      }
       if (cancelled || !containerRef.current || mapRef.current) return;
 
       const map = L.map(containerRef.current, {
@@ -38,13 +34,21 @@ export default function LocationMap({
       });
       mapRef.current = map;
 
-      L.tileLayer(
-        "https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png",
-        {
-          maxZoom: 19,
-          attribution: "© OpenStreetMap · © CARTO",
-        }
-      ).addTo(map);
+      // Esri Canvas Dark Gray: grigio neutro, senza chiave API.
+      // Le tile esistono fino a z16; oltre, Esri serve un placeholder chiaro
+      // "Map data not yet available". maxNativeZoom ferma le richieste a 16 e
+      // lascia che Leaflet riscali, cosi' lo zoom resta usabile.
+      const ESRI = "https://server.arcgisonline.com/ArcGIS/rest/services/Canvas";
+      const tileOpts = { maxNativeZoom: 16, maxZoom: 19 };
+
+      L.tileLayer(`${ESRI}/World_Dark_Gray_Base/MapServer/tile/{z}/{y}/{x}`, {
+        ...tileOpts,
+        attribution: "Tiles © Esri · © OpenStreetMap contributors",
+      }).addTo(map);
+
+      L.tileLayer(`${ESRI}/World_Dark_Gray_Reference/MapServer/tile/{z}/{y}/{x}`, {
+        ...tileOpts,
+      }).addTo(map);
 
       const icon = L.divIcon({
         className: "",

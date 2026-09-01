@@ -32,7 +32,10 @@ lanzan error si Supabase no responde.
 - **Tailwind CSS v4** — configuración vía `@theme` en `app/globals.css`
 - **Supabase** — Postgres + Auth + Storage, con RLS
 - **Framer Motion** (LazyMotion + componentes `m`) — animaciones
-- **Leaflet** (dinámico, client-only) — mapa con tiles CARTO dark
+- **Leaflet** (dinámico, client-only) — mapa con tiles Esri Canvas Dark Gray.
+  Sin API key. Las tiles existen hasta z16, por eso `maxNativeZoom: 16`:
+  más allá Esri sirve un placeholder claro *"Map data not yet available"*.
+  El CSS de Leaflet se importa del paquete, no de un CDN.
 - **dnd-kit** — reordenamiento en el admin
 - **React Hook Form + Zod**, **sonner** (toasts), **lucide-react** (íconos)
 
